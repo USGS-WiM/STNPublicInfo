@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--<link rel="icon" href="data:;base64,="><link rel="icon" href="data:;base64,iVBORw0KGgo=">-->
+    <link rel="shortcut icon" type="image/x-icon" href="http://wim.usgs.gov/img/faviconsmall.png" />
+    <title>STNWeb</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+    <!-- css -->
+    <link rel="stylesheet" href="css/angular-busy.css">
+    <link rel="stylesheet" href="css/bootstrap-table.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/ladda.min.css">
+    <link rel="stylesheet" href="css/lato.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/leaflet.label.css">
+    <link rel="stylesheet" href="css/mobile-angular-ui-base.css">
+    <link rel="stylesheet" href="css/mobile-angular-ui-desktop.css">
+    <link rel="stylesheet" href="css/mobile-angular-ui-hover.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/stn.css">
+   <!-- <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
+
+    <!-- js -->
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/leaflet-src.js"></script>
+    <script src="scripts/esri-leaflet.js"></script>
+    <script src="scripts/angular-leaflet-directive.js"></script>
+    <script src="scripts/angular-busy.js"></script>
+    <script src="scripts/angular-cookies.js"></script>
+    <script src="scripts/angular-resource.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-spinners.min.js"></script>
+    <script src="scripts/angular-ui-router.js"></script>
+    <script src="scripts/bootstrap-table.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/ladda-angular.js"></script>
+    <script src="scripts/ladda.min.js"></script>
+    <script src="scripts/leaflet.label.js"></script>
+    <script src="scripts/mobile-angular-ui.gestures.js"></script>
+    <script src="scripts/mobile-angular-ui.js"></script>
+    <script src="scripts/ui-bootstrap-tpls.js"></script>
+    
+   <!-- <script src="component/map/mapCtrl.</script>-->
+    <script src="components/STNCtrl.js"></script>
+    <script src="components/hwm/publicHWMCtrl.js"></script>
+    <script src="components/sensor/publicSensorCtrl.js"></script>
+    <!--<script src="components/error/errorCtrl.js"></script>-->
+    <script src="services/STNResources.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="app" ng-strict-di>
+
+    <!--header-->
+    <div class="app-nav">        
+        <img style="height:47px;" src="images/USGS.jpg" />
+        <h1 class="nav-header">Short-Term Network Monitoring</h1>
+    </div>
+
+    <!--loading gif-->
+    <div ng-class="{'hidden': !stateIsLoading.showLoading}" class="page-loading">
+        <div class="loading">
+            <div class="loadingcontent"><p class="loadingspinner" style=""><img src="images/loading1.gif" /></p></div>
+        </div>
+    </div>
+
+    <!--content goes in here-->
+    <div ui-view></div>
+
+    <!--footer-->
+    <div id="usgsfooter">
+        <p id="usgsfooterbar">
+            <a target="_blank" href="http://www.usgs.gov/laws/accessibility.html" title="Accessibility Policy (Section 508)">Accessibility</a>
+            <a target="_blank" href="http://www.usgs.gov/foia/" title="Freedom of Information Act">FOIA</a>
+            <a target="_blank" href="http://www.usgs.gov/laws/privacy.html" title="Privacy policies of the U.S. Geological Survey.">Privacy</a>
+            <a target="_blank" href="http://www.usgs.gov/laws/policies_notices.html" title="Policies and notices that govern information posted on USGS Web sites.">Policies and Notices</a>
+
+        </p>
+
+        <p id="usgsfootertext">
+            <!--<a target="_blank" href="http://www.takepride.gov/"><img src="http://www.usgs.gov/images/footer_graphic_takePride.jpg" alt="Take Pride in America logo" title="Take Pride in America Home Page" width="60" height="58"></a>-->
+            <a target="_blank" href="http://firstgov.gov/"><img src="http://www.usgs.gov/images/footer_graphic_usagov.jpg" alt="USA.gov logo" width="90" height="26" style="float: right; margin-right: 10px;" title="USAGov: Government Made Easy."></a>
+            <a target="_blank" href="http://www.doi.gov/">U.S. Department of the Interior</a> |
+            <a target="_blank" href="http://www.usgs.gov/">U.S. Geological Survey</a><br>
+            Page Contact Information: <a target="_blank" href="mailto:storm_team_leader@usgs.gov ">Storm Team Leader</a><br>
+            Page Last Modified: Monday, 06-June-2016
+        </p>
+    </div>
+</body>
+</html>
+
+
