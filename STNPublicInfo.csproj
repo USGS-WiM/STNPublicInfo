@@ -14,7 +14,7 @@
     <RootNamespace>STNPublicInfo</RootNamespace>
     <AssemblyName>STNPublicInfo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -57,11 +57,38 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\app.js" />
-    <Content Include="src\components\hwmInfoPage.html" />
-    <Content Include="src\components\publicHWMCtrl.js" />
-    <Content Include="src\index.html" />
-    <Content Include="src\services\STNResources.js" />
+    <Content Include="app.js" />
+    <Content Include="components\hwm\hwmInfoPage.html" />
+    <Content Include="components\sensor\publicSensorCtrl.js" />
+    <Content Include="components\sensor\sensorInfoPage.html" />
+    <Content Include="components\STNCtrl.js" />
+    <Content Include="components\hwm\publicHWMCtrl.js" />
+    <Content Include="css\app.css" />
+    <Content Include="css\stn.css" />
+    <Content Include="images\loading1.gif" />
+    <Content Include="images\USGS.jpg" />
+    <Content Include="index.html" />
+    <Content Include="scripts\angular-busy.js" />
+    <Content Include="scripts\angular-cookies.js" />
+    <Content Include="scripts\angular-filter.js" />
+    <Content Include="scripts\angular-leaflet-directive.js" />
+    <Content Include="scripts\angular-resource.js" />
+    <Content Include="scripts\angular-route.js" />
+    <Content Include="scripts\angular-spinners.min.js" />
+    <Content Include="scripts\angular-ui-router.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\bootstrap-table.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\esri-leaflet.js" />
+    <Content Include="scripts\jquery.js" />
+    <Content Include="scripts\ladda-angular.js" />
+    <Content Include="scripts\ladda.min.js" />
+    <Content Include="scripts\leaflet-src.js" />
+    <Content Include="scripts\leaflet.label.js" />
+    <Content Include="scripts\mobile-angular-ui.gestures.js" />
+    <Content Include="scripts\mobile-angular-ui.js" />
+    <Content Include="scripts\ui-bootstrap-tpls.js" />
+    <Content Include="services\STNResources.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +102,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -90,7 +118,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>41771</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:41771/</IISUrl>
+          <IISUrl>http://localhost/STNPublicInfo</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
