@@ -1,8 +1,8 @@
 ﻿(function () {
     'use strict';
     var STNControllers = angular.module('STNControllers');
-    STNControllers.controller('publicSensorCtrl', ['$scope', '$http', '$rootScope', '$state', '$filter', 'SERVER_URL', 'thisSite', 'sitePeaks','hDatumList', 'hCollectMethodList', 'thisSensor', 'sensorFiles', 'eventList', 'sensorTypeList', 'sensorBrandList','housingTypeList', 'vDatumList', 'siteOPs', 'OP_MEASURE', 'MEMBER', 'SOURCE', 'DATA_FILE',
-    function ($scope, $http, $rootScope, $state, $filter, SERVER_URL, thisSite, sitePeaks, hDatumList, hCollectMethodList, thisSensor, sensorFiles, eventList, sensorTypeList, sensorBrandList, housingTypeList, vDatumList, siteOPs, OP_MEASURE, MEMBER, SOURCE, DATA_FILE) {
+    STNControllers.controller('publicSensorCtrl', ['$scope', '$http', '$rootScope', '$state', '$filter', 'SERVER_URL', 'thisSite', 'sitePeaks','hDatumList', 'hCollectMethodList', 'thisSensor', 'agencyList', 'sensorFiles', 'eventList', 'sensorTypeList', 'sensorBrandList','housingTypeList', 'vDatumList', 'siteOPs', 'OP_MEASURE', 'MEMBER', 'SOURCE', 'DATA_FILE',
+    function ($scope, $http, $rootScope, $state, $filter, SERVER_URL, thisSite, sitePeaks, hDatumList, hCollectMethodList, thisSensor, agencyList, sensorFiles, eventList, sensorTypeList, sensorBrandList, housingTypeList, vDatumList, siteOPs, OP_MEASURE, MEMBER, SOURCE, DATA_FILE) {
         $scope.serverURL = SERVER_URL;
         $scope.NotFound = false;
         if (thisSite === undefined || thisSensor === undefined) {
@@ -51,10 +51,12 @@
                 for (var r = 0; r < response.length; r++) {
                     var sensMeasures = response[r];
                     var whichOP = siteOPs.filter(function (op) { return op.objective_point_id == response[r].objective_point_id; })[0];
-                    sensMeasures.elevation = whichOP.elev_ft !== undefined ? whichOP.elev_ft : '';
-                    sensMeasures.OPVdatum = vDatumList.filter(function (vd) { return vd.datum_id == whichOP.vdatum_id; })[0].datum_abbreviation;
-                    sensMeasures.op_name = whichOP.name;
-                    $scope.depTapeDownTable.push(sensMeasures);
+                    if (whichOP !== undefined) {
+                        sensMeasures.elevation = whichOP.elev_ft !== undefined ? whichOP.elev_ft : '';
+                        sensMeasures.OPVdatum = vDatumList.filter(function (vd) { return vd.datum_id == whichOP.vdatum_id; })[0].datum_abbreviation;
+                        sensMeasures.op_name = whichOP.name;
+                        $scope.depTapeDownTable.push(sensMeasures);
+                    }
                 }
             });
             //#endregion
@@ -67,7 +69,7 @@
                 if ($scope.retSenStatus.member_id !== undefined && $scope.retSenStatus.member_id > 0) {
                     $http.defaults.headers.common.Accept = 'application/json';
                     MEMBER.getMemberName({ id: $scope.retSenStatus.member_id }).$promise.then(function (response) {
-                        $scope.retSenStatus.deployer = response.list;
+                        $scope.retSenStatus.retriever = response.list;
                     });
                 };
                 $scope.retTapeDownTable = []; //should I show tapedowns?
@@ -77,10 +79,12 @@
                     for (var r = 0; r < response.length; r++) {
                         var retsensMeasures = response[r];
                         var retwhichOP = siteOPs.filter(function (op) { return op.objective_point_id == response[r].objective_point_id; })[0];
-                        retsensMeasures.elevation = retwhichOP.elev_ft;
-                        retsensMeasures.OPVdatum = vDatumList.filter(function (vd) { return vd.datum_id == whichOP.vdatum_id; })[0].datum_abbreviation;
-                        retsensMeasures.op_name = whichOP.name;
-                        $scope.retTapeDownTable.push(retsensMeasures);
+                        if (retwhichOP !== undefined) {
+                            retsensMeasures.elevation = retwhichOP.elev_ft;
+                            retsensMeasures.OPVdatum = vDatumList.filter(function (vd) { return vd.datum_id == retwhichOP.vdatum_id; })[0].datum_abbreviation;
+                            retsensMeasures.op_name = retwhichOP.name;
+                            $scope.retTapeDownTable.push(retsensMeasures);
+                        }
                     }
                 });
             }

@@ -2,90 +2,90 @@
     <div class="col-md-6 pull-left topPad bottomPad">
         <h3>Site Information</h3>
         <!--site number-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Site Number:</label></div>
             <div class="col-md-7"><span>{{aSite.site_no || '---'}}</span></div>
         </div>
         <!--site description-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Site Description:</label></div>
             <div class="col-md-7"><span>{{aSite.site_description || '---'}}</span></div>
         </div>
         <!--Latitude-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Latitude:</label></div>
             <div class="col-md-7"><span>{{aSite.latitude_dd || '---'}}</span></div>
         </div>
         <!--Longitude-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Longitude:</label></div>
             <div class="col-md-7"><span>{{aSite.longitude_dd || '---'}}</span></div>
         </div>
         <!--Horizontal Datum-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Horizontal Datum:</label></div>
             <div class="col-md-7"><span>{{aSite.HorizontalDatum || '---'}}</span></div>
         </div>
         <!--Horizontal Collection Method-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Horizontal Collection Method:</label></div>
             <div class="col-md-7"><span>{{aSite.HorizontalCollectMethod || '---'}}</span></div>
         </div>
         <!--Address-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Address:</label></div>
             <div class="col-md-7"><span>{{aSite.address || "---"}}</span></div>
         </div>
         <!--City-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>City:</label></div>
             <div class="col-md-7"><span>{{aSite.city || "---"}}</span></div>
 
         </div>
         <!--State-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>State:</label></div>
             <div class="col-md-7"><span>{{aSite.state || "---"}}</span></div>
         </div>
         <!--Zip-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Zip:</label></div>
             <div class="col-md-7"><span>{{aSite.zip || "---"}}</span></div>
         </div>
         <!--County-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>County:</label></div>
             <div class="col-md-7"><span>{{aSite.county || "---"}}</span></div>
         </div>
         <!--Waterbody-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Waterbody:</label></div>
             <div class="col-md-7"><span>{{aSite.waterbody || '---'}}</span></div>
         </div>
         <!--Drainage Area-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Drainage Area (sq mi):</label></div>
             <div class="col-md-7"><span>{{aSite.drainage_area_sqmi || "---"}}</span></div>
         </div>
         <!--Station ID for USGS gage-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Station ID for USGS gage:</label></div>
             <div class="col-md-7"><span>{{aSite.usgs_sid || "---"}}</span></div>
         </div>
         <!--Station ID for NOAA gage-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Station ID for NOAA gage:</label></div>
             <div class="col-md-7"><span>{{aSite.noaa_sid || "---"}}</span></div>
         </div>
         <!--Other Station ID-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Other Station ID:</label></div>
             <div class="col-md-7"><span>{{aSite.other_sid || "---"}}</span></div>
         </div>
 
         <br clear="all" />
         <!-- Peaks -->
-        <div class="topPad">
+        <div class="col-md-12 topPad">
             <h3>Peak Summaries for Site {{aSite.site_no}}</h3>
             <table ng-if="peaks !== undefined && peaks.length > 0" class="col-md-6 table table-condensed">
                 <thead>
@@ -109,118 +109,118 @@
         <br clear="all" />
         <h3 class="topPad">HWM Information</h3>
         <!--provisional or approved-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Provisional or Approved:</label></div>
             <div class="col-md-7"><span>{{aHWM.approval_id !== undefined ? 'Approved' : 'Provisional'}}</span></div>
         </div>
         <!--event-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Event:</label></div>
             <div class="col-md-7"><span>{{aHWM.eventName || '---'}}</span></div>
         </div>
         <!--HWM Type-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>HWM Type:</label></div>
             <div class="col-md-7"><span>{{aHWM.hwmType || '---'}}</span></div>
         </div>
         <!--Marker-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Marker:</label></div>
             <div class="col-md-7"><span>{{aHWM.markerName || '---'}}</span></div>
         </div>
         <!--HWM Environment-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>HWM Environment:</label></div>
             <div class="col-md-7"><span>{{aHWM.hwm_environment || '---'}}</span></div>
         </div>
         <!--HWM Quality-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>HWM Quality:</label></div>
             <div class="col-md-7"><span>{{aHWM.hwmQuality || '---'}}</span></div>
         </div>
         <!--Bank-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Bank:</label></div>
             <div class="col-md-7"><span>{{aHWM.bank || '---'}}</span></div>
         </div>
         <!--Location Description-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Location Description:</label></div>
             <div class="col-md-7"><span>{{aHWM.hwm_locationdescription || "---"}}</span></div>
         </div>
         <!--Latitude-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Latitude:</label></div>
             <div class="col-md-7"><span>{{aHWM.latitude_dd || "---"}}</span></div>
 
         </div>
         <!--Longitude-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Longitude:</label></div>
             <div class="col-md-7"><span>{{aHWM.longitude_dd || "---"}}</span></div>
         </div>
         <!--Horizontal Datum-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Horizontal Datum:</label></div>
             <div class="col-md-7"><span>{{aHWM.hDatum || "---"}}</span></div>
         </div>
         <!--Horizontal Collection Method-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Horizontal Collection Method:</label></div>
             <div class="col-md-7"><span>{{aHWM.hCollectMethod || "---"}}</span></div>
         </div>
         <!--Height above ground-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Height above ground:</label></div>
             <div class="col-md-7"><span>{{aHWM.height_above_gnd || '---'}}</span></div>
         </div>
         <!--Flag/Found Date-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Flag/Found Date:</label></div>
             <div class="col-md-7"><span>{{(aHWM.flag_date | date: 'MM/dd/yyyy') || "---"}}</span></div>
         </div>
         <!--Surveyed Date-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Surveyed Date:</label></div>
             <div class="col-md-7"><span>{{(aHWM.survey_date | date: 'MM/dd/yyyy') || "---"}}</span></div>
         </div>
         <!--Surveyed Elevation-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Surveyed Elevation:</label></div>
             <div class="col-md-7"><span>{{aHWM.elev_ft || "---"}}</span></div>
         </div>
         <!--Vertical Datum-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Vertical Datum:</label></div>
             <div class="col-md-7"><span>{{aHWM.vDatum || "---"}}</span></div>
         </div>
         <!--Vertical Collection Method-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Vertical Collection Method:</label></div>
             <div class="col-md-7"><span>{{aHWM.vCollectMethod || "---"}}</span></div>
         </div>
         <!--Uncertainty-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Uncertainty:</label></div>
             <div class="col-md-7"><span>{{aHWM.uncertainty || "---"}}</span></div>
         </div>
         <!--Notes-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Notes:</label></div>
             <div class="col-md-7"><span>{{aHWM.hwm_notes || "---"}}</span></div>
         </div>
         <!--Tranquil/Stillwater HWM-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Tranquil/Stillwater HWM:</label></div>
             <div class="col-md-7"><span>{{aHWM.stillwater || "---"}}</span></div>
         </div>
         <!--Flagging Member-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Flagging Member:</label></div>
             <div class="col-md-7"><span>{{aHWM.flagMember || "---"}}</span></div>
         </div>
         <!--Survey Member-->
-        <div>
+        <div class="col-md-12">
             <div class="col-md-4"><label>Survey Member:</label></div>
             <div class="col-md-7"><span>{{aHWM.surveyMember || "---"}}</span></div>
         </div>
@@ -230,10 +230,10 @@
     </div> <!-- end col-md-6 left-->
 
     <!-- files -->
-    <div class="col-md-6 pull-right topPad">
+    <div class="col-md-6 pull-right topPad bottomPad">
         <h3>HWM Files</h3>
         <!-- list of existing photo files for this hwm -->
-        <div ng-if="imageFiles.length > 0">
+        <div class="col-md-12" ng-if="imageFiles.length > 0">
             <span ng-repeat="f in imageFiles">
                 <ul style="padding-left: 0">
                     <li style="list-style:none;padding-bottom: 15px;">
@@ -247,7 +247,7 @@
                 </ul>
             </span>
         </div> <!-- end if photo files-->
-        <div ng-if="imageFiles.length == 0">
+        <div class="col-md-12" ng-if="imageFiles.length == 0">
             No photo files were uploaded for this HWM.
         </div><!-- no photo files-->
         <br clear="all" />
