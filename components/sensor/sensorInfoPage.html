@@ -113,7 +113,7 @@
             <div class="col-md-4"><label>Event:</label></div>
             <div class="col-md-7"><span>{{aSensor.eventName || "---"}}</span></div>
         </div>
-
+        <!-- --- Deployed Status Information --- -->
         <div class="col-md-12">
             <label>--- Deployed Status Information ---</label>
         </div>
@@ -147,7 +147,7 @@
         <div class="col-md-12">
             <div class="col-md-4"><label>Tapedowns:</label></div>
             <div class="col-md-7">
-                <div ng-show="depTapeDownTable.length == 0">No Tapedowns on this Sensor</div>
+                <div ng-show="depTapeDownTable.length == 0">No Tapedowns on added at Deployment</div>
             </div>
         </div>
         <div class="col-md-12" ng-show="depTapeDownTable.length > 0">
@@ -174,8 +174,7 @@
                 </table>
             </div>
         </div>
-
-
+    
         <br clear="all" />
         <!--Sensor Elevation (if tapedown)-->
         <div class="col-md-12" ng-if="depTapeDownTable.length > 0">
@@ -232,7 +231,7 @@
             <div class="col-md-4"><label>Deploy Member:</label></div>
             <div class="col-md-7"><span>{{depSenStatus.deployer || "---"}}</span></div>
         </div>
-        <!-- RETRIEVAL PART -->
+        <!-- --- RETRIEVAL Information --- -->
         <div ng-if="retSenStatus">
             <div class="col-md-12">
                 <label>--- {{retSenStatus.status}} Status Information ---</label>
@@ -258,41 +257,71 @@
                 <div class="col-md-7"><span>{{(retSenStatus.time_stamp | date: 'MM/dd/yyyy hh:mm a') || "---"}} UTC</span></div>
             </div>
             <!--Tapedowns-->
+            <!--Tapedowns-->
             <div class="col-md-12">
                 <div class="col-md-4"><label>Tapedowns:</label></div>
                 <div class="col-md-7">
-                    <div ng-show="retTapeDownTable.length > 0">
-                        <div class="col-md-8">
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th style="text-align:center">Datum Location</th>
-                                        <th style="text-align:center">Elevation</th>
-                                        <th style="text-align:center">Offset Correction</th>
-                                        <th style="text-align:center">Water Surface</th>
-                                        <th style="text-align:center">Ground Surface</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="rt in retTapeDownTable">
-                                        <td>{{rt.op_name}}</td>
-                                        <td style="text-align:center">{{rt.elevation}} {{dt.OPVdatum}}</td>
-                                        <td style="text-align:center">{{rt.offset_correction}}</td>
-                                        <td style="text-align:center">{{rt.water_surface}}</td>
-                                        <td style="text-align:center">{{rt.ground_surface}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div ng-show="depTapeDownTable.length == 0">No Tapedowns on this Sensor</div>
+                    <div ng-show="retTapeDownTable.length == 0">No Tapedowns added at Retrieval</div>
                 </div>
             </div>
+            <div class="col-md-12" ng-show="retTapeDownTable.length > 0">
+                <div class="col-md-8">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">Datum Location</th>
+                                <th style="text-align:center">Elevation</th>
+                                <th style="text-align:center">Offset Correction</th>
+                                <th style="text-align:center">Water Surface</th>
+                                <th style="text-align:center">Ground Surface</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rt in retTapeDownTable">
+                                <td>{{dt.op_name}}</td>
+                                <td style="text-align:center">{{rt.elevation}} {{rt.OPVdatum}}</td>
+                                <td style="text-align:center">{{rt.offset_correction}}</td>
+                                <td style="text-align:center">{{rt.water_surface}}</td>
+                                <td style="text-align:center">{{rt.ground_surface}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <br clear="all" />
+            <!--Sensor Elevation (if tapedown)-->
+            <div class="col-md-12" ng-if="retTapeDownTable.length > 0">
+                <div class="col-md-4"><label>Sensor Elevation:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.sensor_elevation || "---"}}</span></div>
+            </div>
+            <!--Water Surface Elevation (if tapedown)-->
+            <div class="col-md-12" ng-if="retTapeDownTable.length > 0">
+                <div class="col-md-4"><label>Water Surface Elevation:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.ws_elevation || "---"}}</span></div>
+            </div>
+            <!--Ground Elevation (if tapedown)-->
+            <div class="col-md-12" ng-if="retTapeDownTable.length > 0">
+                <div class="col-md-4"><label>Ground Elevation:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.gs_elevation || "---"}}</span></div>
+            </div>
+            <!--In feet above (if tapedown)-->
+            <div class="col-md-12" ng-if="retTapeDownTable.length > 0">
+                <div class="col-md-4"><label>In feet above:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.vdatum || "---"}}</span></div>
+            </div>
+            <!--Retrieve Member-->
+            <div class="col-md-12">
+                <div class="col-md-4"><label>Retrieval Member:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.retriever || "---"}}</span></div>
+            </div>
+
+
             <br clear="all" />
         </div><!-- end if there is a retrieved status-->
     </div> <!-- end col-md-6 left-->
     <!-- files -->
-    <div class="col-md-6 pull-right topPad">
+    <div class="col-md-6 pull-right topPad bottomPad">
         <h3>Sensor Files</h3>
         <!-- list of existing photo files for this hwm -->
         <label>Data Files</label>
@@ -307,11 +336,14 @@
                 </ul>
             </span>
         </div>
+        <div ng-if="dataFiles.length == 0">
+            No data files were uploaded for this Sensor.
+        </div><!-- no photo files-->
         <label>Photo Files</label>
         <div ng-if="imageFiles.length > 0">
             <span ng-repeat="f in imageFiles">
                 <ul style="padding: 0">
-                    <li style="list-style:none;padding-bottom: 15px;">
+                    <li style="list-style:none;">
                         <a target="_blank" title="Download File" ng-href="{{serverURL}}/Files/{{f.file_id}}/Item">
                             Photo of {{f.description || '[Description left blank]'}} at {{aSite.site_description}}, {{aSite.county}}, {{aSite.state}}, {{f.file_date | date: 'MM/dd/yyyy'}}. Photograph by {{f.source.source_name}}, {{f.source.sourceAgency}}.
                         </a>
