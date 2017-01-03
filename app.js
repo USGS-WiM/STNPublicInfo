@@ -2,7 +2,8 @@
     "use strict";
     var app = angular.module('app',
         ['ngResource', 'ui.router', 'ngCookies', 'ui.bootstrap', 'STNResource', 'leaflet-directive', 'STNControllers']);
-    app.constant('SERVER_URL', 'https://stn.wim.usgs.gov/STNServices');
+ //   app.constant('SERVER_URL', 'https://stn.wim.usgs.gov/STNServices');
+    app.constant('SERVER_URL', 'https://stntest.wim.usgs.gov/STNServices');
 
     app.run(['$rootScope', '$state', function ($rootScope, $state) {
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {

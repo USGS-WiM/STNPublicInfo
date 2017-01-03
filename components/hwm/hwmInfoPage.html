@@ -234,13 +234,14 @@
         <h3>HWM Files</h3>
         <!-- list of existing photo files for this hwm -->
         <div class="col-md-12" ng-if="imageFiles.length > 0">
-            <span ng-repeat="f in imageFiles">
+            <!--<span ng-repeat="f in imageFiles">-->
+            <span>
                 <ul style="padding-left: 0">
-                    <li style="list-style:none;padding-bottom: 15px;">
+                    <li ng-repeat="f in imageFiles" style="list-style:none;padding-bottom: 15px;">
                         <a target="_blank" title="Download File" ng-href="{{serverURL}}/Files/{{f.file_id}}/Item">
-                            Photo of {{f.description || '[Description left blank]'}} at {{aSite.site_description}}, {{aSite.county}}, {{aSite.state}}, {{f.file_date | date: 'MM/dd/yyyy'}}. Photograph by {{f.source.source_name}}, {{f.source.sourceAgency}}.
+                            Photo of {{f.description || '[Description left blank]'}} at {{aSite.site_description}}, {{aSite.county}}, {{aSite.state}}, {{f.photo_date | date: 'MM/dd/yyyy'}}. Photograph by {{f.source.source_name}}, {{f.source.sourceAgency}}.
                         </a>
-                        <div style="width:100px;height:100px">
+                        <div style="max-width:100px;">
                             <img ng-src="{{serverURL}}/Files/{{f.file_id}}/Item" />
                         </div>
                     </li>
