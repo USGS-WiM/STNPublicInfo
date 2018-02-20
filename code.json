@@ -1,0 +1,46 @@
+[
+  {
+    "name": "STNPublicInfo",
+    "organization": "U.S. Geological Survey",
+    "description": "STN public information pages for hwms and sensors",
+    "version": "v0.0.0",
+    "status": "Archival"
+
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain",
+          "URL": "https://github.com/usgs/STNPublicInfo/blob/master/LICENSE.md"
+        }
+      ]
+    },
+
+    "homepageURL": null,
+    "downloadURL": "https://github.com/USGS-WiM/STNPublicInfo/archive/master.zip",
+    "disclaimerURL": "https://github.com/USGS-WiM/STNPublicInfo/blob/master/DISCLAIMER.md",
+    "repositoryUrl": "https://github.com/USGS-WiM/STNPublicInfo",
+    "vcs": "git",
+
+    "laborHours": null,
+
+    "tags": [
+      "stn",
+      "short-term network",
+      "public"
+    ],
+
+    "languages": [
+      "javascript"
+    ],
+
+    "contact": {
+      "name": "Tonia Roddick",
+      "email": "troddick@usgs.gov"
+    },
+
+    "date": {
+      "metadataLastUpdated": "2018-02-20"
+    }
+  }
+]
