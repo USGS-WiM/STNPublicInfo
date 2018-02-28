@@ -89,7 +89,10 @@ To push tags to remote origin: `git push origin --tags`
 
 ## Authors
 
-* **[Tonia Roddick](https://www.usgs.gov/staff-profiles/tonia-m-roddick)**  - *Lead Developer* - [USGS Web Informatics & Mapping](https://wim.usgs.gov/)
+* **[Blake Draper](https://github.com/BlakeDraper)**  - *Point of Contact* - [USGS Web Informatics & Mapping](https://wim.usgs.gov/)
+Mapping](https://wim.usgs.gov/)
+* **[Tonia Roddick](https://github.com/troddick)**  - *Developer*
+
 See also the list of [contributors](../../graphs/contributors) who participated in this project.
 
 ## License
