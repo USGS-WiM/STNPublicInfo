@@ -1,8 +1,13 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var WiM;
 (function (WiM) {
     var Directives;
@@ -13,54 +18,59 @@ var WiM;
         Directives.onLayerRemoved = "onLayerRemoved";
         var LegendLayerAddedEventArgs = (function (_super) {
             __extends(LegendLayerAddedEventArgs, _super);
-            function LegendLayerAddedEventArgs(layername, ltype, style) {
-                _super.call(this);
-                this.LayerName = layername;
-                this.layerType = ltype;
-                this.style = style;
+            function LegendLayerAddedEventArgs(layername, ltype, style, visible) {
+                if (visible === void 0) { visible = true; }
+                var _this = _super.call(this) || this;
+                _this.LayerName = layername;
+                _this.layerType = ltype;
+                _this.visible = visible;
+                _this.style = style;
+                return _this;
             }
             return LegendLayerAddedEventArgs;
-        })(WiM.Event.EventArgs);
+        }(WiM.Event.EventArgs));
         Directives.LegendLayerAddedEventArgs = LegendLayerAddedEventArgs;
         var LegendLayerChangedEventArgs = (function (_super) {
             __extends(LegendLayerChangedEventArgs, _super);
             function LegendLayerChangedEventArgs(layername, propertyname, value) {
-                _super.call(this);
-                this.LayerName = layername;
-                this.PropertyName = propertyname;
-                this.Value = value;
+                var _this = _super.call(this) || this;
+                _this.LayerName = layername;
+                _this.PropertyName = propertyname;
+                _this.Value = value;
+                return _this;
             }
             return LegendLayerChangedEventArgs;
-        })(WiM.Event.EventArgs);
+        }(WiM.Event.EventArgs));
         Directives.LegendLayerChangedEventArgs = LegendLayerChangedEventArgs;
         var LegendLayerRemovedEventArgs = (function (_super) {
             __extends(LegendLayerRemovedEventArgs, _super);
             function LegendLayerRemovedEventArgs(layername, ltype) {
-                _super.call(this);
-                this.LayerName = layername;
-                this.layerType = ltype;
+                var _this = _super.call(this) || this;
+                _this.LayerName = layername;
+                _this.layerType = ltype;
+                return _this;
             }
             return LegendLayerRemovedEventArgs;
-        })(WiM.Event.EventArgs);
+        }(WiM.Event.EventArgs));
         Directives.LegendLayerRemovedEventArgs = LegendLayerRemovedEventArgs;
         var wimLegendController = (function (_super) {
             __extends(wimLegendController, _super);
             function wimLegendController($scope, $http, leafletData, eventManager) {
-                var _this = this;
-                _super.call(this, $http, '');
-                $scope.vm = this;
-                this.eventManager = eventManager;
-                this.eventManager.AddEvent(Directives.onLayerAdded);
-                this.eventManager.AddEvent(Directives.onLayerChanged);
-                this.eventManager.AddEvent(Directives.onLayerRemoved);
-                this.eventManager.SubscribeToEvent(Directives.onLayerAdded, new WiM.Event.EventHandler(function (sender, e) {
+                var _this = _super.call(this, $http, '') || this;
+                $scope.vm = _this;
+                _this.eventManager = eventManager;
+                _this.eventManager.AddEvent(Directives.onLayerAdded);
+                _this.eventManager.AddEvent(Directives.onLayerChanged);
+                _this.eventManager.AddEvent(Directives.onLayerRemoved);
+                _this.eventManager.SubscribeToEvent(Directives.onLayerAdded, new WiM.Event.EventHandler(function (sender, e) {
                     _this.onLayerAdded(sender, e);
                 }));
-                this.eventManager.SubscribeToEvent(Directives.onLayerRemoved, new WiM.Event.EventHandler(function (sender, e) {
+                _this.eventManager.SubscribeToEvent(Directives.onLayerRemoved, new WiM.Event.EventHandler(function (sender, e) {
                     _this.onLayerRemoved(sender, e);
                 }));
-                this.leafletData = leafletData;
-                this.init();
+                _this.leafletData = leafletData;
+                _this.init();
+                return _this;
             }
             wimLegendController.prototype.initOverlays = function (mlyr) {
                 if (mlyr.type == "agsDynamic") {
@@ -104,12 +114,17 @@ var WiM;
                     }, function (error) {
                     });
                 }
+                if (mlyr.type == "wms") {
+                    mlyr.isOpen = true;
+                    if (!mlyr.legendURL)
+                        mlyr.legendURL = mlyr.url + "?version=1.1.1&request=GetLegendGraphic&format=image/png&layer=" + mlyr.layerParams.layers;
+                }
             };
             wimLegendController.prototype.changeBaseLayer = function (key, evt) {
                 var _this = this;
                 this.baselayers.selectedlayerName = key.toString();
-                this.leafletData.getMap().then(function (map) {
-                    _this.leafletData.getLayers().then(function (maplayers) {
+                this.leafletData.getMap("mainMap").then(function (map) {
+                    _this.leafletData.getLayers("mainMap").then(function (maplayers) {
                         if (map.hasLayer(maplayers.baselayers[key])) {
                             return;
                         }
@@ -139,8 +154,8 @@ var WiM;
                     layergroup: {},
                     isOpen: false
                 };
-                this.leafletData.getMap().then(function (map) {
-                    _this.leafletData.getLayers().then(function (maplayers) {
+                this.leafletData.getMap("mainMap").then(function (map) {
+                    _this.leafletData.getLayers("mainMap").then(function (maplayers) {
                         for (var key in maplayers.baselayers) {
                             if (map.hasLayer(maplayers.baselayers[key])) {
                                 _this.baselayers.selectedlayerName = key.toString();
@@ -157,7 +172,7 @@ var WiM;
                     return;
                 this.applicationLayer.isAvailable = true;
                 this.applicationLayer.layergroup[e.LayerName] = {
-                    visible: true,
+                    visible: e.visible,
                     style: e.style
                 };
             };
@@ -167,9 +182,9 @@ var WiM;
                 if (this.applicationLayer.layergroup.hasOwnProperty(e.LayerName))
                     delete this.applicationLayer[e.LayerName];
             };
-            wimLegendController.$inject = ['$scope', '$http', 'leafletData', 'WiM.Event.EventManager'];
             return wimLegendController;
-        })(WiM.Services.HTTPServiceBase);
+        }(WiM.Services.HTTPServiceBase));
+        wimLegendController.$inject = ['$scope', '$http', 'leafletData', 'WiM.Event.EventManager'];
         var wimLegend = (function () {
             function wimLegend() {
                 this.scope = {
@@ -184,41 +199,51 @@ var WiM;
                 this.require = '^leaflet';
                 this.transclude = false;
                 this.controller = wimLegendController;
-                this.template = '<div ng-class="vm.layerControlExpanded ? \'angular-leaflet-control-layers-expanded\' : \'angular-leaflet-control-layers-collapsed\'" ng-click="vm.layerControlExpanded = true; $event.stopPropagation(); $event.preventDefault()" ng-init="vm.layerControlExpanded == false">' +
+                this.template = '<div ng-class="vm.layerControlExpanded ? \'angular-leaflet-control-layers-expanded\' : \'angular-leaflet-control-layers-collapsed\'" ng-click="vm.layerControlExpanded = true; $event.stopPropagation(); $event.preventDefault()" ng-init="vm.layerControlExpanded == true">' +
                     '    <div ng-show="vm.layerControlExpanded">' +
-                    '        <button class="close-legend" ng-click="vm.layerControlExpanded = false; $event.stopPropagation();">Close Legend</button>' +
+                    '        <div class="row legend-header">' +
+                    '           <h4 ng-if= "title" > Layer Control }</h4>' +
+                    '            <button class="close legend-close-button" ng-click="vm.layerControlExpanded = false; $event.stopPropagation(); $event.preventDefault()" ng-init="vm.layerControlExpanded = true" stop-event="click"> &times; </button>' +
+                    '        </div>' +
+                    '        <h6> Layers </h6>' +
                     '        <div class="list-group">' +
                     '            <!-- baselayers -->' +
-                    '            <div ng-class="!vm.baselayers.isOpen  ? \' list-group-item-active wimLegend-list-group-item-active\': \'list-group-item wimLegend-list-group-item\'" ng-click="vm.baselayers.isOpen=(vm.baselayers.isOpen) ? false : true;">' +
-                    '                <label>Base Maps</label>' +
-                    '                <i ng-class="!vm.baselayers.isOpen ? \'fa fa-chevron-up pull-right\': \'fa fa-chevron-down pull-right\'"></i>' +
+                    '            <div class ="wimLegend-basemaps-group" ng-class="!vm.baselayers.isOpen  ? \' list-group-item-active wimLegend-list-group-item-active\': \'list-group-item wimLegend-list-group-item\'" ng-click="vm.baselayers.isOpen=(vm.baselayers.isOpen) ? false : true;">' +
+                    '                <label>' +
+                    '                    <span> Base Maps <i ng-class="!vm.baselayers.isOpen ? \'fa fa-chevron-up pull-right\': \'fa fa-chevron-down pull-right\'"></i> </span>' +
+                    '                </label>' +
                     '            </div> ' +
                     '            <div ng-hide="vm.baselayers.isOpen" class="list-group-body wimLegend-list-group-body">' +
-                    '                <div class="sitebar-item" ng-repeat="(key, layer) in vm.baselayers.layergroup">' +
-                    '                    <input type="radio" id="baselayerRadio{{$id}}" ng-checked="$parent.vm.baselayers.selectedlayerName === key.toString()" ng-value="key.toString()" /><label class="hasRadio" ng-class="{ \'radioSelected\': $parent.vm.baselayers.selectedlayerName === key.toString() }" for="baselayerRadio{{$id}}" ng-click="vm.changeBaseLayer(key, $event)">{{layer.name}}</label>' +
+                    '                <div class="sidebar-item wimLegend-basemap-item" ng-repeat="(key, layer) in vm.baselayers.layergroup">' +
+                    '                    <label class="rdo" for="baselayerRadio{{$id}}" ng-click="vm.changeBaseLayer(key, $event)">' +
+                    '                        <input type="radio" id="baselayerRadio{{$id}}" ng-checked="$parent.vm.baselayers.selectedlayerName === key.toString()" ng-value="key.toString()" />' +
+                    '                        <span>{{layer.name}}</span>' +
+                    '                    </label>' +
                     '                </div>' +
                     '            </div>  ' +
                     '            <!-- Application Layers -->' +
-                    '            <div ng-if="vm.applicationLayer.isAvailable">' +
-                    '                <div ng-class="vm.applicationLayer.isOpen  ? \'list-group-item wimLegend-list-group-item-active\': \'list-group-item wimLegend-list-group-item\'">' +
-                    '                    <label> {{vm.applicationLayer.selectedlayerName}}</label>' +
-                    '                    <i ng-class="vm.applicationLayer.isOpen ? \'fa fa-chevron-up pull-right\': \'fa fa-chevron-down pull-right\'" ng-click="vm.applicationLayer.isOpen=(vm.applicationLayer.isOpen) ? false : true;"></i>' +
+                    '            <div class="wimLegend-application-group" ng-if="vm.applicationLayer.isAvailable">' +
+                    '                <div ng-class="vm.applicationLayer.isOpen  ? \' list-group-item-active wimLegend-list-group-item-active\': \'list-group-item wimLegend-list-group-item\'">' +
+                    '                    <label>' +
+                    '                        <span> {{vm.applicationLayer.selectedlayerName}} <i ng-class="vm.applicationLayer.isOpen ?  \'fa fa-chevron-up pull-right\': \'fa fa-chevron-down pull-right\'" ng-click="vm.applicationLayer.isOpen=(vm.applicationLayer.isOpen) ? false : true;"></i></span>' +
+                    '                    </label>' +
                     '                </div>' +
                     '                <div ng-show="vm.applicationLayer.isOpen">' +
-                    '                    <div ng-repeat="(key, lyr) in vm.applicationLayer.layergroup">' +
-                    '                        <input type="checkbox" id="applicationLayer{{$id}}" ng-checked="lyr.visible" ng-value="lyr.visible" />                        ' +
-                    '                        <label for="applicationLayer{{$id}}" ng-click="$parent.vm.toggleLayer(key.toString(), lyr.visible)"><img ng-src={{lyr.style.imagesrc}} />{{lyr.style.displayName}}</label>' +
+                    '                    <div class="wimLegend-application-item" ng-repeat="(key, lyr) in vm.applicationLayer.layergroup">' +
+                    '                            <label for="applicationLayer{{$id}}" class="chx" ng-click="$parent.vm.toggleLayer(key.toString(), lyr.visible)">' +
+                    '                               <input type="checkbox" id="applicationLayer{{$id}}" ng-checked="lyr.visible" />' +
+                    '                               <span><img ng-src={{lyr.style.imagesrc}} />{{lyr.style.displayName}}</span>' +
+                    '                            </label>' +
                     '                    </div>' +
                     '                </div>' +
                     '            </div>' +
                     '            <!-- overlays --> ' +
-                    '            <div ng-repeat="layer in vm.overlays.layergroup" ng-init="vm.initOverlays(layer)">' +
+                    '            <div class="wimLegend-overlay-group" ng-repeat="layer in vm.overlays.layergroup" ng-init="vm.initOverlays(layer)">' +
                     '                <div ng-if="!layer.layerParams.showOnSelector && layer.layerParams.showOnSelector !== false" ng-class="!layer.isOpen  ? \'list-group-item-active wimLegend-list-group-item-active\': \'list-group-item wimLegend-list-group-item\'">' +
-                    '                    <input type="checkbox" id="checkbox{{$id}}" ng-checked="layer.visible" />' +
-                    '                    <label class="hasCheckbox" ng-class="{ \'checkboxEnabled\': layer.visible }" for="checkbox{{$id}}" ng-if="!layer.layerParams.showOnSelector && layer.layerParams.showOnSelector !== false" ng-click="layer.visible = (layer.visible) ? false : true;">' +
-                    '                        {{layer.name}}' +
-                    '                    </label>' +
-                    '                    <i ng-class="!layer.isOpen ? \'fa fa-chevron-up pull-right\': \'fa fa-chevron-down pull-right\'" ng-click="layer.isOpen=(layer.isOpen) ? false : true;"></i>' +
+                    '                            <label for="checkbox{{$id}}" class="chx" ng-if="!layer.layerParams.showOnSelector && layer.layerParams.showOnSelector !== false" ng-click="layer.visible = (layer.visible) ? false : true;">' +
+                    '                               <input type="checkbox" id="checkbox{{$id}}" ng-checked="layer.visible" />' +
+                    '                               <span>{{layer.name}}<i ng-class="!layer.isOpen ? \'fa fa-chevron-up pull-right\': \'fa fa-chevron-down pull-right\'" ng-click="layer.isOpen=(layer.isOpen) ? false : true; $event.stopPropagation(); $event.preventDefault()"></i></span>' +
+                    '                            </label>' +
                     '                </div>' +
                     '                <div ng-hide="layer.isOpen">' +
                     '                    <div class="legendGroup" ng-if="layer.type == \'agsDynamic\' || layer.type == \'agsFeature\'">' +
@@ -226,10 +251,13 @@ var WiM;
                     '                            <label>{{lyr.layerName}}</label>' +
                     '                            <div ng-repeat="leg in lyr.legend ">' +
                     '                                <img class="legendSwatch" alt="Embedded Image"' +
-                    '                                     src="data:{{leg.contentType}};base64,{{leg.imageData}}" />' +
+                    '                                     ng-src="data:{{leg.contentType}};base64,{{leg.imageData}}" />' +
                     '                                <i>{{leg.label}}</i>' +
                     '                            </div>' +
                     '                        </div>' +
+                    '                    </div>' +
+                    '                    <div class="legendGroup" ng-if="layer.type == \'wms\'">' +
+                    '                       <img class="legendSwatch" alt="Embedded Image" ng-src="{{layer.legendURL}}" />' +
                     '                    </div>' +
                     '                </div>' +
                     '            </div>' +
@@ -252,14 +280,14 @@ var WiM;
                     e.preventDefault();
                 });
                 element.bind('mouseover', function (e) {
-                    controller.getMap().then(function (map) {
+                    controller.getMap("mainMap").then(function (map) {
                         map.dragging.disable();
-                        map.doubleClickZoom.disable;
+                        map.doubleClickZoom.disable();
                         map.scrollWheelZoom.disable();
                     });
                 });
                 element.bind('mouseout', function (e) {
-                    controller.getMap().then(function (map) {
+                    controller.getMap("mainMap").then(function (map) {
                         map.dragging.enable();
                         map.doubleClickZoom.enable();
                         map.scrollWheelZoom.enable();
@@ -267,7 +295,7 @@ var WiM;
                 });
             };
             return wimLegend;
-        })();
+        }());
         angular.module('wim_angular')
             .directive('wimLegend', wimLegend.instance);
     })(Directives = WiM.Directives || (WiM.Directives = {}));

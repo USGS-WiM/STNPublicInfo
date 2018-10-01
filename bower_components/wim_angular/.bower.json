@@ -1,27 +1,11 @@
 {
   "name": "wim_angular",
-  "homepage": "https://github.com/jknewson/wim_angular",
-  "authors": [
-    "jknewson <jknewson@usgs.gov>",
-    "Marty Smith <marsmith@usgs.gov>",
-    "Blake Draper <bdraper@usgs.gov>"
-  ],
-  "description": "angular library for wim apps",
-  "license": "MIT",
-  "main": [
-    "dist/**/.*"
-  ],
-  "ignore": [
-    "*",
-    "!dist/",
-    "!dist/**/*",
-    "_references.*"
-  ],
-  "_release": "dafa6d42a6",
+  "homepage": "https://github.com/USGS-WiM/wim_angular",
+  "_release": "33ff25ce84",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "dafa6d42a6e9df18a4f5c15bf705e85091978f9b"
+    "commit": "33ff25ce8433c87423ec954f16cad937a55e3b33"
   },
   "_source": "https://github.com/USGS-WiM/wim_angular.git",
   "_target": "master",

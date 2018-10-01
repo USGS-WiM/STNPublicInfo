@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <!--<link rel="icon" href="data:;base64,="><link rel="icon" href="data:;base64,iVBORw0KGgo=">-->
@@ -6,116 +6,90 @@
     <title>STNWeb</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+    <!-- css -->
+    <link rel="stylesheet" href="css/angular-busy.css">
+    <link rel="stylesheet" href="css/bootstrap-table.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/ladda.min.css">
+    <link rel="stylesheet" href="css/lato.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/leaflet.label.css">
+    <link rel="stylesheet" href="css/mobile-angular-ui-base.css">
+    <link rel="stylesheet" href="css/mobile-angular-ui-desktop.css">
+    <link rel="stylesheet" href="css/mobile-angular-ui-hover.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/stn.css">
+   <!-- <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
 
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-busy.css">
-    <link rel="stylesheet" href="bower_components/bootstrap-table.css">
-    <link rel="stylesheet" href="bower_components/bootstrap-theme.css">
-    <link rel="stylesheet" href="bower_components/bootstrap.css">
-    <link rel="stylesheet" href="bower_components/ladda.min.css">
-    <link rel="stylesheet" href="bower_components/lato.css">
-    <link rel="stylesheet" href="bower_components/leaflet.css">
-    <link rel="stylesheet" href="bower_components/leaflet.label.css">
-    <link rel="stylesheet" href="bower_components/mobile-angular-ui-base.css">
-    <link rel="stylesheet" href="bower_components/mobile-angular-ui-desktop.css">
-    <link rel="stylesheet" href="bower_components/mobile-angular-ui-hover.css">
-    <link rel="stylesheet" href="bower_components/toastr.css">
-    <!-- endinject -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery.js"></script>
-    <script src="bower_components/angular.js"></script>
-    <script src="bower_components/leaflet-src.js"></script>
-    <script src="bower_components/esri-leaflet.js"></script>
-    <script src="bower_components/angular-leaflet-directive.js"></script>
-    <script src="bower_components/angular-animate.js"></script>
-    <script src="bower_components/angular-busy.js"></script>
-    <script src="bower_components/angular-cookies.js"></script>
-    <script src="bower_components/angular-filter.min.js"></script>
-    <script src="bower_components/angular-resource.js"></script>
-    <script src="bower_components/angular-route.js"></script>
-    <script src="bower_components/angular-spinners.min.js"></script>
-    <script src="bower_components/angular-ui-router.js"></script>
-    <script src="bower_components/bootstrap-table.js"></script>
-    <script src="bower_components/bootstrap.js"></script>
-    <script src="bower_components/event.js"></script>
-    <script src="bower_components/indeterminate.js"></script>
-    <script src="bower_components/index.js"></script>
-    <script src="bower_components/l.control.geosearch.js"></script>
-    <script src="bower_components/ladda-angular.js"></script>
-    <script src="bower_components/ladda.min.js"></script>
-    <script src="bower_components/leaflet.label.js"></script>
-    <script src="bower_components/mask.js"></script>
-    <script src="bower_components/mobile-angular-ui.gestures.js"></script>
-    <script src="bower_components/mobile-angular-ui.js"></script>
-    <script src="bower_components/scrollpoint.js"></script>
-    <script src="bower_components/spin.js"></script>
-    <script src="bower_components/toastr.js"></script>
-    <script src="bower_components/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/ui-scroll.js"></script>
-    <script src="bower_components/uploader.js"></script>
-    <script src="bower_components/validate.js"></script>
-    <!-- endinject -->
-    <!-- inject:js -->
-    <script src="components/publicHWMCtrl.js"></script>
+    <!-- js -->
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/leaflet-src.js"></script>
+    <script src="scripts/esri-leaflet.js"></script>
+    <script src="scripts/angular-leaflet-directive.js"></script>
+    <script src="scripts/angular-busy.js"></script>
+    <script src="scripts/angular-cookies.js"></script>
+    <script src="scripts/angular-resource.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-spinners.min.js"></script>
+    <script src="scripts/angular-ui-router.js"></script>
+    <script src="scripts/bootstrap-table.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/ladda-angular.js"></script>
+    <script src="scripts/ladda.min.js"></script>
+    <script src="scripts/leaflet.label.js"></script>
+    <script src="scripts/mobile-angular-ui.gestures.js"></script>
+    <script src="scripts/mobile-angular-ui.js"></script>
+    <script src="scripts/ui-bootstrap-tpls.js"></script>
+    
+   <!-- <script src="component/map/mapCtrl.</script>-->
+    <script src="components/STNCtrl.js"></script>
+    <script src="components/hwm/publicHWMCtrl.js"></script>
+    <script src="components/sensor/publicSensorCtrl.js"></script>
+    <!--<script src="components/error/errorCtrl.js"></script>-->
     <script src="services/STNResources.js"></script>
     <script src="app.js"></script>
-    <!-- endinject -->
-    <!--<script src="app.js"></script>-->
-    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>-->
-    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-
-    <!-- Not working in Bower -->
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <script src="bower_components/angular-ui-router.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.js"></script>
-
-
-
-
 </head>
 
 <body ng-app="app" ng-strict-di>
 
-    <!--HEADER START navCtrl-->
-    <div ng-controller="mainCtrl" class="app-nav">
-        <h1 class="nav-header">Short-Term Network<span ng-if="thisPage"> - {{thisPage}}</span></h1>
-                     
-        <!--<div class="subnav" ng-show="isAuth.val">
-            <ul class="subnav-links">
-                <li><a ng-class="{active: activeMenu == 'map'}" ui-sref="map" ng-click="activeMenu = 'map'">Map</a></li>
-                <li><a ng-class="{active: activeMenu == 'approval'}" ui-sref="approval" ng-click="activeMenu = 'approval'">Approval</a></li>
-                <li><a ng-class="{active: activeMenu == 'sites'}" ui-sref="siteSearch" ng-click="activeMenu = 'sites'">Sites</a></li>
-                <li><a ng-class="{active: activeMenu == 'report'}" ui-sref="reporting.reportDash" ng-click="activeMenu = 'report'">Reporting</a></li>
-                <li><a ng-class="{active: activeMenu == 'settings'}" ui-sref="settings" ng-click="activeMenu = 'settings'">Settings</a></li>
-            </ul>
-            <div class="subnav-right" uib-dropdown is-open="status.isopen" ng-show="isAuth.val">
-                <button type="button" ng-click="goSearch = !goSearch" class="btn-subnav">
-                    <span ng-show="!goSearch">Search <i class="ion-search"></i></span>
-                    <span ng-show="goSearch">Cancel <i class="ion-close"></i></span>
-                </button>
-
-                <button id="single-button" type="button" class="btn-subnav" uib-dropdown-toggle ng-disabled="disabled">
-                    Create <span ng-show="status.isopen" class="ion-arrow-up-b"></span><span ng-show="!status.isopen" class="ion-arrow-down-b"></span>
-                </button>
-                <ul ng-show="status.isopen" class="dropdown-menu" role="menu" aria-labelledby="single-button">
-                    <li role="menuitem"><a ui-sref="site.dashboard({id: 0})">Site</a></li>
-                    <li role="menuitem"><a ui-sref="quickCreate({id:'HWM'})">Quick HWM</a></li>
-                    <li role="menuitem"><a ui-sref="quickCreate({id:'Sensor'})">Quick Sensor</a></li>
-                </ul>
-            </div>
-        </div>-->  
+    <!--header-->
+    <div class="app-nav">        
+        <img style="height:47px;" src="images/USGS.jpg" />
+        <h1 class="nav-header">Short-Term Network Monitoring</h1>
     </div>
 
+    <!--loading gif-->
     <div ng-class="{'hidden': !stateIsLoading.showLoading}" class="page-loading">
         <div class="loading">
             <div class="loadingcontent"><p class="loadingspinner" style=""><img src="images/loading1.gif" /></p></div>
         </div>
     </div>
 
-    <div ui-view class="app-view"></div>
+    <!--content goes in here-->
+    <div ui-view></div>
 
+    <!--footer-->
+    <div id="usgsfooter">
+        <p id="usgsfooterbar">
+            <a target="_blank" href="http://www.usgs.gov/laws/accessibility.html" title="Accessibility Policy (Section 508)">Accessibility</a>
+            <a target="_blank" href="http://www.usgs.gov/foia/" title="Freedom of Information Act">FOIA</a>
+            <a target="_blank" href="http://www.usgs.gov/laws/privacy.html" title="Privacy policies of the U.S. Geological Survey.">Privacy</a>
+            <a target="_blank" href="http://www.usgs.gov/laws/policies_notices.html" title="Policies and notices that govern information posted on USGS Web sites.">Policies and Notices</a>
+
+        </p>
+
+        <p id="usgsfootertext">
+            <!--<a target="_blank" href="http://www.takepride.gov/"><img src="http://www.usgs.gov/images/footer_graphic_takePride.jpg" alt="Take Pride in America logo" title="Take Pride in America Home Page" width="60" height="58"></a>-->
+            <a target="_blank" href="http://firstgov.gov/"><img src="http://www.usgs.gov/images/footer_graphic_usagov.jpg" alt="USA.gov logo" width="90" height="26" style="float: right; margin-right: 10px;" title="USAGov: Government Made Easy."></a>
+            <a target="_blank" href="http://www.doi.gov/">U.S. Department of the Interior</a> |
+            <a target="_blank" href="http://www.usgs.gov/">U.S. Geological Survey</a><br>
+            Page Contact Information: <a target="_blank" href="mailto:storm_team_leader@usgs.gov ">Storm Team Leader</a><br>
+            Page Last Modified: Monday, 06-June-2016
+        </p>
+    </div>
 </body>
 </html>
 

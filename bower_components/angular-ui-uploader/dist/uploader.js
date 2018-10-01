@@ -1,7 +1,7 @@
 /*!
  * angular-ui-uploader
  * https://github.com/angular-ui/ui-uploader
- * Version: 1.1.3 - 2015-12-01T00:54:49.732Z
+ * Version: 1.4.1 - 2017-04-20T06:14:06.100Z
  * License: MIT
  */
 
@@ -44,6 +44,7 @@ function uiUploader($log) {
 
         //headers are not shared by requests
         var headers = options.headers || {};
+        var xhrOptions = options.options || {};
 
         for (var i = 0; i < self.files.length; i++) {
             if (self.activeUploads == self.options.concurrency) {
@@ -51,7 +52,7 @@ function uiUploader($log) {
             }
             if (self.files[i].active)
                 continue;
-            ajaxUpload(self.files[i], self.options.url, self.options.data, headers);
+            ajaxUpload(self.files[i], self.options.url, self.options.data, self.options.paramName, headers, xhrOptions);
         }
     }
 
@@ -78,16 +79,17 @@ function uiUploader($log) {
         return (bytes / Math.pow(1024, i)).toFixed(i ? 1 : 0) + ' ' + sizes[isNaN(bytes) ? 0 : i + 1];
     }
 
-    function ajaxUpload(file, url, data, headers) {
-        var xhr, formData, prop, key = 'file';
+    function ajaxUpload(file, url, data, key, headers, xhrOptions) {
+        var xhr, formData, prop;
         data = data || {};
+        key = key || 'file';
 
         self.activeUploads += 1;
         file.active = true;
         xhr = new window.XMLHttpRequest();
 
         // To account for sites that may require CORS
-        if (data.withCredentials === true) {
+        if (xhrOptions.withCredentials === true) {
             xhr.withCredentials = true;
         }
 
@@ -122,26 +124,39 @@ function uiUploader($log) {
             }
         };
 
-        // Triggered when upload is completed:
-        xhr.onload = function() {
-            self.activeUploads -= 1;
-            self.uploadedFiles += 1;
-            startUpload(self.options);
-            if (angular.isFunction(self.options.onCompleted)) {
-                self.options.onCompleted(file, xhr.responseText, xhr.status);
-            }            
-            if (self.uploadedFiles === self.files.length) {
-                self.uploadedFiles = 0;
-                if (angular.isFunction(self.options.onCompletedAll)) {
-                    self.options.onCompletedAll(self.files);
-                }
+        // Triggered when the upload is successful (the server may not have responded yet).
+        xhr.upload.onload = function() {
+
+            if (angular.isFunction(self.options.onUploadSuccess)) {
+                self.options.onUploadSuccess(file);
             }
         };
 
         // Triggered when upload fails:
-        xhr.onerror = function(e) {
+        xhr.upload.onerror = function(e) {
             if (angular.isFunction(self.options.onError)) {
                 self.options.onError(e);
+            }
+        };
+
+        // Triggered when the upload has completed AND the server has responded. Equivalent to
+        // listening for the readystatechange event when xhr.readyState === XMLHttpRequest.DONE.
+        xhr.onload = function () {
+
+            self.activeUploads -= 1;
+            self.uploadedFiles += 1;
+
+            startUpload(self.options);
+
+            if (angular.isFunction(self.options.onCompleted)) {
+                self.options.onCompleted(file, xhr.responseText, xhr.status);
+            }
+
+            if (self.activeUploads === 0) {
+                self.uploadedFiles = 0;
+                if (angular.isFunction(self.options.onCompletedAll)) {
+                    self.options.onCompletedAll(self.files);
+                }
             }
         };
 

@@ -13,7 +13,7 @@ You can use with html5, jquery or every library or framework:
 >  to have a user control, clean, simple, customizable,
 > and above all very easy to implement.
 
-Try the [demo](http://realtica.org/ng-uploader/demo.html).
+Try the [demo](https://htmlpreview.github.io/?https://github.com/angular-ui/ui-uploader/master/demo/index.html).
 
 
 Compatibility
@@ -65,12 +65,18 @@ $uiUploader.startUpload({
                     // file contains a File object
                     console.log(file);
                 },
-                onCompleted: function(file, response) {
+                onUploadSuccess: function(file) {
                     // file contains a File object
                     console.log(file);
-                    // response contains the server response
-                    console.log(response);
-                }
+                },
+                onCompleted: function(file, responseText, status) {
+                    // file contains a File object
+                    console.log(file);
+                    // responseText contains the server response as text
+                    console.log(responseText);
+                    // status contains the status of the response
+                    console.log(status);
+                },
                 onCompletedAll: function(files) {
                 	// files is an array of File objects
                 	console.log(files);
@@ -87,11 +93,14 @@ $uiUploader.startUpload({
                 	withCredentials: true
                 },
                 onProgress: function(file) {
-                    //do stuff
-                },
-                onCompleted: function(file, response) {
                     // do stuff
-                }
+                },
+                onUploadSuccess: function(file) {
+                    // do stuff
+                },
+                onCompleted: function(file, responseText, status) {
+                    // do stuff
+                },
                 onCompletedAll: function(files) {
                 	// do stuff
                 }

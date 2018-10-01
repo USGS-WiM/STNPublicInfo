@@ -43,12 +43,19 @@ Our bug tracker utilizes several labels to help organize and identify issues. He
 - `confirmed` - Issues that have been confirmed with a reduced test case and identify a bug in Bootstrap Table.
 - `css` - Issues stemming from our compiled CSS or source CSS files.
 - `docs` - Issues for improving or updating our documentation.
+- `example` - Issues that contains an important example.
 - `extension` - Issues for adding or updating our extension.
 - `feature` - Issues asking for a new feature to be added, or an existing one to be extended or modified.
+- `fixed` - Issues already fixed in a pull request.
 - `grunt` - Issues with our included JavaScript-based Gruntfile, which is used to run all our tests, concatenate and compile source files, and more.
 - `help wanted` - Issues we need or would love help from the community to resolve.
+- `invalid` - Issues we can't resolve because it is not related to Bootstrap Table or the information provided is not completed.
 - `js` - Issues stemming from our compiled or source JavaScript files.
+- `locale` - Issues regarding errors in locale extensions.
+- `needs example` - Issues don't have an example but we need an example in order to confirm the issue or test the pull request.
+- `needs review` - Issues missing some important information about errors in the code, steps to reproduce the issue, etc.
 - `resource` - Issues with helpful resources to improve Bootstrap Table.
+- `update to latest version` - Issues need to update to latest version in order to be fixed.
 
 For a complete look at our labels, see the [project labels page](https://github.com/wenzhixin/bootstrap-table/labels).
 
@@ -204,3 +211,41 @@ includes code changes) and under the terms of the
 
 By contributing your code, you agree to license your contribution under the [MIT License](LICENSE).
 By contributing to the documentation, you agree to license your contribution under the [Creative Commons Attribution 3.0 Unported License](docs/LICENSE).
+
+
+## Financial contributions
+
+We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/bootstrap-table).
+Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
+
+
+## Credits
+
+
+### Contributors
+
+Thank you to all the people who have already contributed to bootstrap-table!
+<a href="graphs/contributors"><img src="https://opencollective.com/bootstrap-table/contributors.svg?width=890" /></a>
+
+
+### Backers
+
+Thank you to all our backers! [[Become a backer](https://opencollective.com/bootstrap-table#backer)]
+
+<a href="https://opencollective.com/bootstrap-table#backers" target="_blank"><img src="https://opencollective.com/bootstrap-table/backers.svg?width=890"></a>
+
+
+### Sponsors
+
+Thank you to all our sponsors! (please ask your company to also support this open source project by [becoming a sponsor](https://opencollective.com/bootstrap-table#sponsor))
+
+<a href="https://opencollective.com/bootstrap-table/sponsor/0/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/1/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/2/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/3/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/4/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/5/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/6/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/7/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/8/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-table/sponsor/9/website" target="_blank"><img src="https://opencollective.com/bootstrap-table/sponsor/9/avatar.svg"></a>

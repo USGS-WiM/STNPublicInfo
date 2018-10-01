@@ -1,0 +1,370 @@
+﻿<div ng-if="!NotFound">
+    <div class="col-md-6 pull-left topPad bottomPad">
+        <h3>Site Information</h3>
+        <!--site number-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Site Number:</label></div>
+            <div class="col-md-7"><span>{{aSite.site_no || '---'}}</span></div>
+        </div>
+        <!--site description-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Site Description:</label></div>
+            <div class="col-md-7"><span>{{aSite.site_description || '---'}}</span></div>
+        </div>
+        <!--Latitude-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Latitude:</label></div>
+            <div class="col-md-7"><span>{{aSite.latitude_dd || '---'}}</span></div>
+        </div>
+        <!--Longitude-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Longitude:</label></div>
+            <div class="col-md-7"><span>{{aSite.longitude_dd || '---'}}</span></div>
+        </div>
+        <!--Horizontal Datum-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Horizontal Datum:</label></div>
+            <div class="col-md-7"><span>{{aSite.HorizontalDatum || '---'}}</span></div>
+        </div>
+        <!--Horizontal Collection Method-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Horizontal Collection Method:</label></div>
+            <div class="col-md-7"><span>{{aSite.HorizontalCollectMethod || '---'}}</span></div>
+        </div>
+        <!--Address-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Address:</label></div>
+            <div class="col-md-7"><span>{{aSite.address || "---"}}</span></div>
+        </div>
+        <!--City-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>City:</label></div>
+            <div class="col-md-7"><span>{{aSite.city || "---"}}</span></div>
+
+        </div>
+        <!--State-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>State:</label></div>
+            <div class="col-md-7"><span>{{aSite.state || "---"}}</span></div>
+        </div>
+        <!--Zip-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Zip:</label></div>
+            <div class="col-md-7"><span>{{aSite.zip || "---"}}</span></div>
+        </div>
+        <!--County-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>County:</label></div>
+            <div class="col-md-7"><span>{{aSite.county || "---"}}</span></div>
+        </div>
+        <!--Waterbody-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Waterbody:</label></div>
+            <div class="col-md-7"><span>{{aSite.waterbody || '---'}}</span></div>
+        </div>
+        <!--Drainage Area-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Drainage Area (sq mi):</label></div>
+            <div class="col-md-7"><span>{{aSite.drainage_area_sqmi || "---"}}</span></div>
+        </div>
+        <!--Station ID for USGS gage-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Station ID for USGS gage:</label></div>
+            <div class="col-md-7"><span>{{aSite.usgs_sid || "---"}}</span></div>
+        </div>
+        <!--Station ID for NOAA gage-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Station ID for NOAA gage:</label></div>
+            <div class="col-md-7"><span>{{aSite.noaa_sid || "---"}}</span></div>
+        </div>
+        <!--Other Station ID-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Other Station ID:</label></div>
+            <div class="col-md-7"><span>{{aSite.other_sid || "---"}}</span></div>
+        </div>
+
+        <br clear="all" />
+        <!-- Peaks -->
+        <div class="col-md-12 topPad">
+            <h3>Peak Summaries for Site {{aSite.site_no}}</h3>
+            <table ng-if="peaks !== undefined && peaks.length > 0" class="col-md-6 table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Elevation (ft)</th>
+                        <th>Date/Time</th>
+                        <th>Event</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in peaks">
+                        <td>{{p.peak_stage}}</td>
+                        <td>{{p.peak_date | date: 'MM/dd/yyyy HH:mm a'}}</td>
+                        <td>{{p.event_name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div ng-if="peaks == undefined || peaks.length == 0">No peak summaries for this Site.</div>
+        </div>
+
+        <br clear="all" />
+        <h3 class="topPad">Sensor Information</h3>
+        <!--Event-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Event:</label></div>
+            <div class="col-md-7"><span>{{aSensor.eventName || "---"}}</span></div>
+        </div>
+        <!-- --- Deployed Status Information --- -->
+        <div class="col-md-12">
+            <label>--- Deployed Status Information ---</label>
+        </div>
+        <!--Sensor Type-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Sensor Type:</label></div>
+            <div class="col-md-7"><span>{{aSensor.sensorType || "---"}}</span></div>
+
+        </div>
+        <!--Sensor Brand-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Sensor Brand:</label></div>
+            <div class="col-md-7"><span>{{aSensor.sensorBrand || "---"}}</span></div>
+        </div>
+        <!--Serial Number-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Serial Number:</label></div>
+            <div class="col-md-7"><span>{{aSensor.serial_number || "---"}}</span></div>
+        </div>
+        <!--Housing Serial Number-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Housing Serial Number:</label></div>
+            <div class="col-md-7"><span>{{aSensor.housing_serial_number || "---"}}</span></div>
+        </div>
+        <!--Housing Types-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Housing Types:</label></div>
+            <div class="col-md-7"><span>{{aSensor.housingType || "---"}}</span></div>
+        </div>
+        <!--Tapedowns-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Tapedowns:</label></div>
+            <div class="col-md-7">
+                <div ng-show="depTapeDownTable.length == 0">No Tapedowns on added at Deployment</div>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="depTapeDownTable.length > 0">
+            <div class="col-md-8">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">Datum Location</th>
+                            <th style="text-align:center">Elevation</th>
+                            <th style="text-align:center">Offset Correction</th>
+                            <th style="text-align:center">Water Surface</th>
+                            <th style="text-align:center">Ground Surface</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dt in depTapeDownTable">
+                            <td>{{dt.op_name}}</td>
+                            <td style="text-align:center">{{dt.elevation}} {{dt.OPVdatum}}</td>
+                            <td style="text-align:center">{{dt.offset_correction}}</td>
+                            <td style="text-align:center">{{dt.water_surface}}</td>
+                            <td style="text-align:center">{{dt.ground_surface}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <br clear="all" />
+        <!--Sensor Elevation (if tapedown)-->
+        <div class="col-md-12" ng-if="depTapeDownTable.length > 0">
+            <div class="col-md-4"><label>Sensor Elevation:</label></div>
+            <div class="col-md-7"><span>{{depSenStatus.sensor_elevation || "---"}}</span></div>
+        </div>
+        <!--Water Surface Elevation (if tapedown)-->
+        <div class="col-md-12" ng-if="depTapeDownTable.length > 0">
+            <div class="col-md-4"><label>Water Surface Elevation:</label></div>
+            <div class="col-md-7"><span>{{depSenStatus.ws_elevation || "---"}}</span></div>
+        </div>
+        <!--Ground Elevation (if tapedown)-->
+        <div class="col-md-12" ng-if="depTapeDownTable.length > 0">
+            <div class="col-md-4"><label>Ground Elevation:</label></div>
+            <div class="col-md-7"><span>{{depSenStatus.gs_elevation || "---"}}</span></div>
+        </div>
+        <!--In feet above (if tapedown)-->
+        <div class="col-md-12" ng-if="depTapeDownTable.length > 0">
+            <div class="col-md-4"><label>In feet above:</label></div>
+            <div class="col-md-7"><span>{{depSenStatus.vdatum || "---"}}</span></div>
+        </div>
+        <!--Vented-->
+        <div class="col-md-12" ng-show="aSensor.sensor_type_id == 1">
+            <div class="col-md-4"><label>Vented:</label></div>
+            <div class="col-md-7"><span>{{aSensor.vented || "---"}}</span></div>
+        </div>
+        <!--Deployment Type-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Deployment Type:</label></div>
+            <div class="col-md-7"><span>{{aSensor.deploymentType || "---"}}</span></div>
+        </div>
+        <!--Location Description-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Location Description:</label></div>
+            <div class="col-md-7"><span>{{aSensor.location_description || "---"}}</span></div>
+        </div>
+        <!--Interval-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Interval:</label></div>
+            <div class="col-md-7"><span>{{aSensor.interval || "---"}}</span> <span ng-if='aSensor.interval'>seconds</span></div>
+        </div>
+        <!--Deploy Date-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Deploy Date:</label></div>
+            <div class="col-md-7"><span>{{(depSenStatus.time_stamp | date: 'MM/dd/yyyy hh:mm a') || "---"}} UTC</span></div>
+        </div>
+        <!--Note-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Note:</label></div>
+            <div class="col-md-7"><span>{{depSenStatus.notes || "---"}}</span></div>
+        </div>
+        <!--Deploy Member-->
+        <div class="col-md-12">
+            <div class="col-md-4"><label>Deploy Member:</label></div>
+            <div class="col-md-7"><span>{{depSenStatus.deployer || "---"}}</span></div>
+        </div>
+        <!-- --- RETRIEVAL Information --- -->
+        <div ng-if="retSenStatus">
+            <div class="col-md-12">
+                <label>--- {{retSenStatus.status}} Status Information ---</label>
+            </div>
+            <!--Status Type-->
+            <div class="col-md-12">
+                <div class="col-md-4"><label>Status Type:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.status || "---"}}</span></div>
+            </div>
+            <!--Collection Condition-->
+            <div class="col-md-12">
+                <div class="col-md-4"><label>Collection Condition:</label></div>
+                <div class="col-md-7"><span>{{aSensor.instCollection || "---"}}</span></div>
+            </div>
+            <!--Note-->
+            <div class="col-md-12">
+                <div class="col-md-4"><label>Note:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.notes || "---"}}</span></div>
+            </div>
+            <!--Retrieve Date-->
+            <div class="col-md-12">
+                <div class="col-md-4"><label>Retrieve Date:</label></div>
+                <div class="col-md-7"><span>{{(retSenStatus.time_stamp | date: 'MM/dd/yyyy hh:mm a') || "---"}} UTC</span></div>
+            </div>
+            <!--Tapedowns-->
+            <!--Tapedowns-->
+            <div class="col-md-12">
+                <div class="col-md-4"><label>Tapedowns:</label></div>
+                <div class="col-md-7">
+                    <div ng-show="retTapeDownTable.length == 0">No Tapedowns added at Retrieval</div>
+                </div>
+            </div>
+            <div class="col-md-12" ng-show="retTapeDownTable.length > 0">
+                <div class="col-md-8">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">Datum Location</th>
+                                <th style="text-align:center">Elevation</th>
+                                <th style="text-align:center">Offset Correction</th>
+                                <th style="text-align:center">Water Surface</th>
+                                <th style="text-align:center">Ground Surface</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rt in retTapeDownTable">
+                                <td>{{dt.op_name}}</td>
+                                <td style="text-align:center">{{rt.elevation}} {{rt.OPVdatum}}</td>
+                                <td style="text-align:center">{{rt.offset_correction}}</td>
+                                <td style="text-align:center">{{rt.water_surface}}</td>
+                                <td style="text-align:center">{{rt.ground_surface}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <br clear="all" />
+            <!--Sensor Elevation (if tapedown)-->
+            <div class="col-md-12" ng-if="retTapeDownTable.length > 0">
+                <div class="col-md-4"><label>Sensor Elevation:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.sensor_elevation || "---"}}</span></div>
+            </div>
+            <!--Water Surface Elevation (if tapedown)-->
+            <div class="col-md-12" ng-if="retTapeDownTable.length > 0">
+                <div class="col-md-4"><label>Water Surface Elevation:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.ws_elevation || "---"}}</span></div>
+            </div>
+            <!--Ground Elevation (if tapedown)-->
+            <div class="col-md-12" ng-if="retTapeDownTable.length > 0">
+                <div class="col-md-4"><label>Ground Elevation:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.gs_elevation || "---"}}</span></div>
+            </div>
+            <!--In feet above (if tapedown)-->
+            <div class="col-md-12" ng-if="retTapeDownTable.length > 0">
+                <div class="col-md-4"><label>In feet above:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.vdatum || "---"}}</span></div>
+            </div>
+            <!--Retrieve Member-->
+            <div class="col-md-12">
+                <div class="col-md-4"><label>Retrieval Member:</label></div>
+                <div class="col-md-7"><span>{{retSenStatus.retriever || "---"}}</span></div>
+            </div>
+
+
+            <br clear="all" />
+        </div><!-- end if there is a retrieved status-->
+    </div> <!-- end col-md-6 left-->
+    <!-- files -->
+    <div class="col-md-6 pull-right topPad bottomPad">
+        <h3>Sensor Files</h3>
+        <!-- list of existing photo files for this hwm -->
+        <label>Data Files</label>
+        <div ng-if="dataFiles.length > 0">
+            <span>
+                <ul style="padding: 0">
+                    <li ng-repeat="df in dataFiles" style="list-style:none;">
+                        <span ng-if="df.path != '<link>'">
+                            <a target="_blank" title="Download File" ng-href="{{serverURL}}/Files/{{df.file_id}}/Item">
+                                {{(df.file_date | date: 'MM/dd/yyyy') || df.file_id}}: {{df.name}}
+                            </a>
+                        </span>
+                        <span ng-if="df.path == '<link>'">
+                            {{(df.file_date | date: 'MM/dd/yyyy') || df.file_id}}: <a target="_blank" title="Go to Link" ng-href="{{df.name}}">{{df.name}}</a>
+                        </span>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <div ng-if="dataFiles.length == 0">
+            No data files were uploaded for this Sensor.
+        </div><!-- no photo files-->
+        <label>Photo Files</label>
+        <div ng-if="imageFiles.length > 0">           
+            <ul style="padding: 0;margin-top:35px;">
+                <li ng-repeat="f in imageFiles" style="list-style:none;">
+                    <a target="_blank" title="Download File" ng-href="{{serverURL}}/Files/{{f.file_id}}/Item">
+                        Photo of {{f.description || '[Description left blank]'}} at {{aSite.site_description}}, {{aSite.county}}, {{aSite.state}}, {{f.photo_date | date: 'MM/dd/yyyy'}}. Photograph by {{f.source.source_name}}, {{f.source.sourceAgency}}.
+                    </a>
+                    <div style="max-width:100px;">
+                        <a target="_blank" title="Download File" ng-href="{{serverURL}}/Files/{{f.file_id}}/Item"><img ng-src="{{serverURL}}/Files/{{f.file_id}}/Item" /></a>
+                    </div>
+                </li>
+            </ul>            
+        </div> <!-- end if photo files-->
+        <div ng-if="imageFiles.length == 0">
+            No photo files were uploaded for this Sensor.
+        </div><!-- no photo files-->
+        <br clear="all" />
+
+    </div><!-- end col-md-6 right-->
+</div> <!-- end !NotFound -->
+
+<div ng-if="NotFound">
+    <div class="topPad"><h3>There was an error retrieving this HWM. Please try again from the map, or contact .... for assistance.</h3></div>
+</div>

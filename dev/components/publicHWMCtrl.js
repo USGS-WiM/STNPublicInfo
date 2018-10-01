@@ -12,6 +12,7 @@
 
             $scope.aHWM = thisHWM;
             $scope.aHWM.eventName = eventList.filter(function (e) { return e.event_id == $scope.aHWM.event_id; })[0].event_name;
+            $scope.aHWM.hwmLabel = thisHWM.hwm_label !== undefined ? thisHWM.hwm_label : "";
             $scope.aHWM.hwmType = hTypeList.filter(function (ht) { return ht.hwm_type_id == thisHWM.hwm_type_id; })[0].hwm_type;
             $scope.aHWM.hwmQuality = thisHWM.hwm_quality_id !== undefined && thisHWM.hwm_quality_id > 0 ? hQualityList.filter(function (hq) { return hq.hwm_quality_id == thisHWM.hwm_quality_id; })[0].hwm_quality : "";
             $scope.aHWM.vCollectMethod = thisHWM.vcollect_method_id !== undefined && thisHWM.vcollect_method_id > 0 ? vCollectMethodList.filter(function (vc) { return vc.vcollect_method_id == thisHWM.vcollect_method_id; })[0].vcollect_method : "";

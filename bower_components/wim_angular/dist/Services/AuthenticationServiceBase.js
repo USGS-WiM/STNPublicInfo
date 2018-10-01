@@ -1,8 +1,13 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var WiM;
 (function (WiM) {
     var Services;
@@ -11,8 +16,9 @@ var WiM;
         var AuthenticationServiceAgent = (function (_super) {
             __extends(AuthenticationServiceAgent, _super);
             function AuthenticationServiceAgent($http, $q, baseURL, u) {
-                _super.call(this, $http, baseURL);
-                this.User = u;
+                var _this = _super.call(this, $http, baseURL) || this;
+                _this.User = u;
+                return _this;
             }
             AuthenticationServiceAgent.prototype.SetBasicAuthentication = function (uri, password) {
                 var request;
@@ -81,7 +87,7 @@ var WiM;
                 }
             };
             return AuthenticationServiceAgent;
-        })(Services.HTTPServiceBase);
+        }(Services.HTTPServiceBase));
         Services.AuthenticationServiceAgent = AuthenticationServiceAgent;
     })(Services = WiM.Services || (WiM.Services = {}));
 })(WiM || (WiM = {}));

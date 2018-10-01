@@ -1,9 +1,9 @@
-(function () {
+﻿(function () {
     "use strict";
 
     //look up common service module, and register the new factory with that module 
     var STNResource = angular.module('STNResource', ['ngResource']);
-    var rootURL = "https://stntest.wim.usgs.gov/STNServices2";
+    var rootURL = "https://stn.wim.usgs.gov/STNServices";
    
     //#region GEOCODE https://geocoding.geo.census.gov/geocoder/geographies/coordinates?benchmark=4&vintage=4&format=json
     STNResource.factory('GEOCODE', ['$resource', function ($resource) {
@@ -19,41 +19,10 @@
         return $resource(rootURL + '/Agencies/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }               
             });
     }]);
     //#endregion of AGENCY    
-
-    //#region CONTACT_TYPE
-    STNResource.factory('CONTACT_TYPE', ['$resource', function ($resource) {
-        return $resource(rootURL + '/ContactTypes/:id.json',
-            {}, {
-                query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
-            });
-    }]);
-    //#endregion of CONTACT_TYPE
-
-    //#region CONTACT
-    STNResource.factory('CONTACT', ['$resource', function ($resource) {
-        return $resource(rootURL + '/Contacts/:id.json',
-            {}, {
-                query: {},
-                getContactModel: { method: 'GET', isArray: true },
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                addReportContact: { method: 'POST', cache: false, isArray: false, params: { contactId: '@contactId', ReportId: '@reportId', ContactTypeId: '@contactTypeId' }, url: rootURL + '/Contacts/:contactId/AddReportContact' }, //"Contacts/{contactId}/addReportContact?ReportId={reportId}&ContactTypeId={contactTypeId}"
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
-            });
-    }]);
-    //#endregion of CONTACT
 
     //#region COUNTIES
     STNResource.factory('COUNTIES', ['$resource', function ($resource) {
@@ -76,12 +45,7 @@
                 getAll: { method: 'GET', isArray: true },
                 getDFApproval: { method: 'GET', cache: false, isArray: false, url: rootURL + '/DataFiles/:id/Approval.json' },
                 getUnapprovedDFs: { method: 'GET', isArray: true, cache: false }, //?IsApproved={approved}&Event={eventId}&Processor={memberId}&State={state}
-                approveDF: { method: 'POST', cache: false, isArray: false, params: { id: '@id' }, url: rootURL + '/datafiles/:id/Approve.json' }, //posts an APPROVAL, updates the data file with approval_id and returns APPROVAL
-                approveNWISDF: { method: 'POST', cache: false, isArray: false, params: { id: '@id' }, url: rootURL + '/datafiles/:id/NWISApprove.json' }, //posts an APPROVAL (using EventCoord), updates the data file with approval_id and returns APPROVAL
-                unApproveDF: { method: 'DELETE', cache: false, isArray: false, url: rootURL + '/datafiles/:id/Unapprove.json' }, //posts an APPROVAL, updates the datafile with approval_id and returns APPROVAL
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                approveNWISDF: { method: 'POST', cache: false, isArray: false, params: { id: '@id' }, url: rootURL + '/datafiles/:id/NWISApprove.json' } //posts an APPROVAL (using EventCoord), updates the data file with approval_id and returns APPROVAL  
             });
     }]);
     //#endregion of DATA_FILE
@@ -91,10 +55,7 @@
         return $resource(rootURL + '/DeploymentPriorities/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }                
             });
     }]);
     //#endregion of DEPLOYMENT_PRIORITY
@@ -105,10 +66,7 @@
             {}, {
                 query: {},
                 getDepSensType: { method: 'GET', isArray: false, url: rootURL + '/DeploymentTypes/:id/SensorType.json' },
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }                
             });
     }]);
     //#endregion of DEPLOYMENT_TYPE
@@ -118,10 +76,7 @@
         return $resource(rootURL + '/EventStatus/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }                
             });
     }]);
     //#endregion of EVENT_STATUS
@@ -131,10 +86,7 @@
         return $resource(rootURL + '/EventTypes/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of EVENT_TYPE
@@ -145,9 +97,7 @@
             {}, {
                 query: {},
                 getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                update: { method: 'PUT', cache: false, isArray: false }
             });
     }]);
     //#endregion of FILE_TYPE
@@ -159,10 +109,7 @@
                 query: {},
                 getAll: { method: 'GET', isArray: true },
                 getEventSites: { method: 'GET', isArray: true, url: rootURL + '/Events/:id/Sites.json' },
-                getFilteredEvents: { method: 'GET', isArray: true, url: rootURL + '/Events/FilteredEvents.json' }, //?Date: null, Type: 0, State: null
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getFilteredEvents: { method: 'GET', isArray: true, url: rootURL + '/Events/FilteredEvents.json' } //?Date: null, Type: 0, State: null                
             });
     }]);
     //#endregion of EVENT
@@ -173,11 +120,7 @@
             {}, {
                 query: {},
                 getAll: { method: 'GET', isArray: true },
-                getFileItem: { method: 'GET', isArray: false, url: rootURL + '/Files/:id/Item' },
-                update: { method: 'PUT', cache: false, isArray: false },
-                uploadFile: { method: 'POST', url: rootURL + '/Files/bytes', headers: { 'Content-Type': undefined }, transformRequest: angular.identity, cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getFileItem: { method: 'GET', isArray: false, url: rootURL + '/Files/:id/Item' }                
             });
     }]);
     //#endregion of FILE
@@ -187,10 +130,7 @@
         return $resource(rootURL + '/HorizontalMethods/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of HORIZONTAL_COLL_METHODS
@@ -200,10 +140,7 @@
         return $resource(rootURL + '/HorizontalDatums/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of HORIZONTAL_DATUM
@@ -213,10 +150,7 @@
         return $resource(rootURL + '/HousingTypes/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of HOUSING_TYPE
@@ -226,44 +160,20 @@
         return $resource(rootURL + '/hwms/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
                 getFilteredHWMs: { method: 'GET', isArray: true, url: rootURL + '/HWMs/FilteredHWMs.json' }, //Event={eventIds}&EventType={eventTypeIDs}&EventStatus={eventStatusID}&States={states}&County={counties}&HWMType={hwmTypeIDs}&HWMQuality={hwmQualIDs}&HWMEnvironment={hwmEnvironment}&SurveyComplete={surveyComplete}&StillWater={stillWater}
                 getHWMFiles: { method: 'GET', isArray: true, url: rootURL + '/HWMs/:id/Files.json' },
                 getUnapprovedHWMs: { method: 'GET', isArray: true, cache: false }, //IsApproved={'true'/'false'}&Event={eventId}&Member={memberId}&State={state}
-                getHWMApproval: { method: 'GET', cache: false, isArray: false, url: rootURL + '/hwms/:id/Approval.json' },
-                approveHWM: { method: 'POST', cache: false, isArray: false, params: { id: '@id' }, url: rootURL + '/hwms/:id/Approve.json' }, //posts an APPROVAL, updates the HWM with approval_id and returns APPROVAL
-                unApproveHWM: { method: 'DELETE', cache: false, isArray: false, url: rootURL + '/hwms/:id/Unapprove.json' }, //posts an APPROVAL, updates the HWM with approval_id and returns APPROVAL
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getHWMApproval: { method: 'GET', cache: false, isArray: false, url: rootURL + '/hwms/:id/Approval.json' },                
             });
     }]);
     //#endregion of HWM
-
-    //#region HWM_Service
-    STNResource.factory('HWM_Service', [function () {
-        //when hwm is created or deleted, this gets updated so that filesCtrl will update it's list of siteHWMs
-        var allSiteHWMs = [];
-        return {
-            getAllSiteHWMs: function () {
-                return allSiteHWMs;
-            },
-            setAllSiteHWMs: function (sh) {
-                allSiteHWMs = sh;
-            }
-        };
-    }]);
-    //#endregion of HWM_Service
 
     //#region HWM_QUALITY
     STNResource.factory('HWM_QUALITY', ['$resource', function ($resource) {
         return $resource(rootURL + '/HWMQualities/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of HWM_QUALITY
@@ -273,10 +183,7 @@
         return $resource(rootURL + '/HWMTypes/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of HWM_TYPE
@@ -288,39 +195,19 @@
                 query: {},
                 getAll: { method: 'GET', isArray: true },
                 getstatusInstruments: { method: 'GET', isArray: true, url: rootURL + '/Instruments.json/' }, //CurrentStatus: 1, Event: $scope.evID 
+                getInstrumentFiles: {method: 'GET', isArray: true, url: rootURL + '/Instruments/:id/Files.json'},
                 getFullInstrument: { method: 'GET', url: rootURL + '/Instruments/:id/FullInstrument.json' }, //gets instrument and it's stats together
-                getInstrumentStatus: { method: 'GET', url: rootURL + '/Instruments/:id/InstrumentStatus.json' },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getInstrumentStatus: { method: 'GET', url: rootURL + '/Instruments/:id/InstrumentStatus.json' }
             });
     }]);
     //#endregion of INSTRUMENT
-
-    //#region Instrument_Service
-    STNResource.factory('Instrument_Service', [function () {
-        //when hwm is created or deleted, this gets updated so that filesCtrl will update it's list of siteHWMs
-        var allSiteSensors = [];
-        return {
-            getAllSiteSensors: function () {
-                return allSiteSensors;
-            },
-            setAllSiteSensors: function (ss) {
-                allSiteSensors = ss;
-            }
-        };
-    }]);
-    //#endregion of Instrument_Service
 
     //#region INSTRUMENT_STATUS
     STNResource.factory('INSTRUMENT_STATUS', ['$resource', function ($resource) {
         return $resource(rootURL + '/InstrumentStatus/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of INSTRUMENT
@@ -330,10 +217,7 @@
         return $resource(rootURL + '/InstrCollectConditions/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of INST_COLL_CONDITION
@@ -343,10 +227,7 @@
         return $resource(rootURL + '/LandOwners/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of LANDOWNER_CONTACT
@@ -395,10 +276,7 @@
         return $resource(rootURL + '/Markers/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of MARKER
@@ -408,15 +286,10 @@
         return $resource(rootURL + '/Members/:id.json',
             {}, {
                 query: {},
+                getMemberName: { method: 'GET', isArray: false, transformResponse: function (data) { return { list: angular.fromJson(data) } }, url: rootURL + '/Members/GetMemberName/:id.json'},
                 getAll: { method: 'GET', isArray: true },
                 getRoleMembers: { method: 'GET', isArray: true, url: rootURL + '/Roles/:roleId/Members.json' },
-                getEventPeople: { method: 'GET', isArray: true, url: rootURL + '/Events/:Eventid/Members.json' },
-
-                changePW: { method: 'GET', isArray: false, url: rootURL + '/Members.json' },
-                addMember: { method: 'POST', cache: false, isArray: false, url: rootURL + '/Members/:pass/addMember' },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                deleteMember: { method: 'DELETE', cache: false, isArray: false, url: rootURL + '/Members/:id' }
+                getEventPeople: { method: 'GET', isArray: true, url: rootURL + '/Events/:Eventid/Members.json' }
             });
     }]);
     //#endregion of MEMBER
@@ -426,10 +299,7 @@
         return $resource(rootURL + '/NetworkNames/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of NETWORK_NAME
@@ -439,10 +309,7 @@
         return $resource(rootURL + '/NetworkTypes/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of NETWORK_TYPE
@@ -452,12 +319,9 @@
         return $resource(rootURL + '/ObjectivePoints/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
+                getAll: { method: 'GET', isArray: true },                
                 getOPFiles: { method: 'GET', isArray: true, url: rootURL + "/ObjectivePoints/:id/Files" },
-                getOPControls: { method: 'GET', cache: false, isArray: true, url: rootURL + "/ObjectivePoints/:id/OPControls.json" },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getOPControls: { method: 'GET', cache: false, isArray: true, url: rootURL + "/ObjectivePoints/:id/OPControls.json" }                
             });
     }]);
     //#endregion of OBJECTIVE_POINT
@@ -467,10 +331,7 @@
         return $resource(rootURL + '/OPControlIdentifiers/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }               
             });
     }]);
     //#endregion of OP_CONTROL_IDENTIFIER
@@ -482,10 +343,7 @@
                 query: {},
                 getAll: { method: 'GET', isArray: true },
                 getInstStatOPMeasures: { method: 'GET', isArray: true, url: rootURL + '/InstrumentStatus/:instrumentStatusId/OPMeasurements' },
-                getDatumLocationOPMeasures: { method: 'GET', isArray: true, url: rootURL + '/ObjectivePoints/:objectivePointId/OPMeasurements' },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getDatumLocationOPMeasures: { method: 'GET', isArray: true, url: rootURL + '/ObjectivePoints/:objectivePointId/OPMeasurements' }                
             });
     }]);
     //#endregion of OP_MEASURE
@@ -495,10 +353,7 @@
         return $resource(rootURL + '/ObjectivePointQualities/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of OP_QUALITY
@@ -508,10 +363,7 @@
         return $resource(rootURL + '/OPTypes/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of OP_TYPE
@@ -523,9 +375,7 @@
                 query: {},
                 getAll: { method: 'GET', isArray: true },
                 getPeakSummaryDFs: { method: 'GET', isArray: true, cache: false, url: rootURL + '/PeakSummaries/:id/DataFiles.json' },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getPeakSummaryHWMs: { method: 'GET', isArray: true, cache: false, url: rootURL + '/PeakSummaries/:id/HWMs.json' }
             });
     }]);
     //#endregion of PEAK
@@ -545,10 +395,7 @@
         return $resource(rootURL + '/SensorBrands/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of SENSOR_BRAND
@@ -559,12 +406,7 @@
             {}, {
                 query: {},
                 getAll: { method: 'GET', isArray: true }, //this returns sensortypes with list of deploymenttypes for each one
-                getSensorDeploymentTypes: { method: 'GET', isArray: true, url: rootURL + '/SensorTypes/:id/DeploymentTypes.json' },
-                addSensorDeploymentType: { method: 'POST', cache: false, isArray: true, params: { sensorTypeId: '@sensorTypeId', DeploymentTypeId: '@deploymentTypeId' }, url: rootURL + '/SensorTypes/:sensorTypeId/addDeploymentType' },//?DeploymentTypeId={deploymentTypeId}"
-                removeSensorDeploymentType: { method: 'POST', isArray: false, params: { sensorTypeId: '@sensorTypeId', DeploymentTypeId: '@deploymentTypeId' }, url: rootURL + '/SensorTypes/:sensorTypeId/removeDeploymentType' },//?DeploymentTypeId={deploymentTypeId}"
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getSensorDeploymentTypes: { method: 'GET', isArray: true, url: rootURL + '/SensorTypes/:id/DeploymentTypes.json' }                 
             });
     }]);
     //#endregion of SENSOR_TYPE
@@ -582,12 +424,8 @@
                 getSiteLandOwner: { method: 'GET', url: rootURL + '/Sites/:id/LandOwner.json' },
                 //Site NetworkTypes
                 getSiteNetworkTypes: { method: 'GET', isArray: true, url: rootURL + '/sites/:id/networkTypes.json' },
-                postSiteNetworkType: { method: 'POST', cache: false, params: { siteId: '@siteId', NetworkTypeId: '@networkTypeId' }, isArray: true, url: rootURL + '/sites/:siteId/AddNetworkType' }, //?NetworkTypeId= {networkTypeId}
-                deleteSiteNetworkType: { method: 'DELETE', cache: false, isArray: false, url: rootURL + '/sites/:siteId/removeNetworkType?NetworkTypeId:networkTypeId' },
                 //Site Network Names
                 getSiteNetworkNames: { method: 'GET', isArray: true, url: rootURL + '/sites/:id/networkNames.json' },
-                postSiteNetworkName: { method: 'POST', cache: false, params: { siteId: '@siteId', NetworkNameId: '@networkNameId' }, isArray: true, url: rootURL + '/sites/:siteId/AddNetworkName' }, //?NetworkNameId= {networkNameId}
-                deleteSiteNetworkName: { method: 'DELETE', cache: false, isArray: false, url: rootURL + '/sites/:siteId/removeNetworkName?NetworkNameId:networkNameId' },
                 //Site Housings
                 getSiteHousings: { method: 'GET', isArray: true, url: rootURL + '/sites/:id/SiteHousings.json' },
                 //  postSiteHousing: {method: 'POST', cache: false, isArray:true, url: rootURL + '/site/:id/AddSiteSiteHousing.json'},
@@ -596,11 +434,7 @@
                 getSiteSensors: { method: 'GET', isArray: true, url: rootURL + '/Sites/:id/SiteFullInstrumentList.json' }, //all instruments and their stats together
                 getSiteHWMs: { method: 'GET', isArray: true, url: rootURL + '/Sites/:id/HWMs.json' },
                 getSiteFiles: { method: 'GET', isArray: true, url: rootURL + '/Sites/:id/Files.json' },
-                getSitePeaks: { method: 'GET', isArray: true, url: rootURL + '/Sites/:id/PeakSummaryView.json' },
-                //just the Site
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getSitePeaks: { method: 'GET', isArray: true, url: rootURL + '/Sites/:id/PeakSummaryView.json' }                
             });
     }]);
     //#endregion of SITE
@@ -610,10 +444,7 @@
         return $resource(rootURL + '/States/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }               
             });
     }]);
     //#endregion of STATE
@@ -623,10 +454,7 @@
         return $resource(rootURL + '/SiteHousings/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of SITE_HOUSING
@@ -636,10 +464,7 @@
         return $resource(rootURL + '/StatusTypes/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of STATUS_TYPE
@@ -649,10 +474,8 @@
         return $resource(rootURL + '/Sources/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
+               
             });
     }]);
     //#endregion of SOURCE
@@ -662,10 +485,7 @@
         return $resource(rootURL + '/VerticalMethods/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of VERTICAL_COLL_METHOD
@@ -675,10 +495,7 @@
         return $resource(rootURL + '/VerticalDatums/:id.json',
             {}, {
                 query: {},
-                getAll: { method: 'GET', isArray: true },
-                update: { method: 'PUT', cache: false, isArray: false },
-                save: { method: 'POST', cache: false, isArray: false },
-                delete: { method: 'DELETE', cache: false, isArray: false }
+                getAll: { method: 'GET', isArray: true }
             });
     }]);
     //#endregion of VERTICAL_DATUM
