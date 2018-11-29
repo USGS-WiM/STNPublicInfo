@@ -21,7 +21,7 @@
             $scope.aHWM.hCollectMethod = thisHWM.hcollect_method_id !== undefined && thisHWM.hcollect_method_id > 0 ? hCollectMethodList.filter(function (m) { return m.hcollect_method_id == thisHWM.hcollect_method_id; })[0].hcollect_method : "";
             $scope.aHWM.height_above_gnd = thisHWM.height_above_gnd !== undefined ? thisHWM.height_above_gnd : "---";
             $scope.aHWM.elev_ft = thisHWM.elev_ft !== undefined ? thisHWM.elev_ft : "---";
-            $scope.aHWM.stillwater = thisHWM.stillwater == "1" ? "yes" : "No";
+            $scope.aHWM.stillwater = thisHWM.stillwater == "1" ? "Yes" : "No";
             //No collection team name anymore for flag or survey..
             //need creds to get member names -- maybe need separate endpoint to return string of member name without requiring auth
 
