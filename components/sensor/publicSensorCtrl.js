@@ -38,9 +38,30 @@
             //#region DEPLOYED status information
             $scope.depSenStatus = $scope.aSensor.instrument_status.filter(function (ss) { return ss.status === "Deployed"; })[0];
             $scope.depSenStatus.time_stamp = getDateTimeParts($scope.depSenStatus.time_stamp);//keeps it as utc for display
-            $scope.depSenStatus.sensor_elevation = $scope.depSenStatus.sensor_elevation !== undefined ? $scope.depSenStatus.sensor_elevation : '---';
-            $scope.depSenStatus.ws_elevation = $scope.depSenStatus.ws_elevation !== undefined ? $scope.depSenStatus.ws_elevation : '---';
-            $scope.depSenStatus.gs_elevation = $scope.depSenStatus.gs_elevation !== undefined ? $scope.depSenStatus.gs_elevation : '---';
+            if ($scope.depSenStatus !== undefined) {
+                if ($scope.depSenStatus.sensor_elevation === undefined) {
+                    $scope.depSenStatus.sensor_elevation = '---';
+                } else {
+                        $scope.depSenStatus.sensor_elevation = $scope.depSenStatus.sensor_elevation
+                    }
+                }
+            // $scope.depSenStatus.sensor_elevation = $scope.depSenStatus.sensor_elevation !== undefined ? $scope.depSenStatus.sensor_elevation : '---';
+            // $scope.depSenStatus.ws_elevation = $scope.depSenStatus.ws_elevation !== undefined ? $scope.depSenStatus.ws_elevation : '---';
+            if ($scope.depSenStatus !== undefined) {
+                if ($scope.depSenStatus.ws_elevation === undefined) {
+                    $scope.depSenStatus.ws_elevation = '---';
+                } else {
+                        $scope.depSenStatus.ws_elevation = $scope.depSenStatus.ws_elevation
+                    }
+                }
+            // $scope.depSenStatus.gs_elevation = $scope.depSenStatus.gs_elevation !== undefined ? $scope.depSenStatus.gs_elevation : '---';
+            if ($scope.depSenStatus !== undefined) {
+                if ($scope.depSenStatus.gs_elevation === undefined) {
+                    $scope.depSenStatus.gs_elevation = '---';
+                } else {
+                        $scope.depSenStatus.gs_elevation = $scope.depSenStatus.gs_elevation
+                    }
+                }
             if ($scope.depSenStatus.member_id !== undefined && $scope.depSenStatus.member_id > 0) {
                 $http.defaults.headers.common.Accept = 'application/json';
                 MEMBER.getMemberName({ id: $scope.depSenStatus.member_id }).$promise.then(function (response) {
@@ -66,8 +87,22 @@
 
             //#region RETRIEVED status information
             $scope.retSenStatus = $scope.aSensor.instrument_status.filter(function (ss) { return ss.status === "Retrieved"; })[0];
-            $scope.retSenStatus.sensor_elevation = $scope.retSenStatus.sensor_elevation !== undefined ? $scope.retSenStatus.sensor_elevation : '---';
-            $scope.retSenStatus.ws_elevation = $scope.retSenStatus.ws_elevation !== undefined ? $scope.retSenStatus.ws_elevation : '---';
+            if ($scope.retSenStatus !== undefined) {
+                if ($scope.retSenStatus.sensor_elevation === undefined) {
+                    $scope.retSenStatus.sensor_elevation = '---';
+                } else {
+                        $scope.retSenStatus.sensor_elevation = $scope.retSenStatus.sensor_elevation
+                    }
+                }
+            // $scope.retSenStatus.sensor_elevation = $scope.retSenStatus.sensor_elevation !== undefined ? $scope.retSenStatus.sensor_elevation : '---';
+            //$scope.retSenStatus.ws_elevation = $scope.retSenStatus.ws_elevation !== undefined ? $scope.retSenStatus.ws_elevation : '---';
+            if ($scope.retSenStatus !== undefined) {
+                if ($scope.retSenStatus.ws_elevation === undefined) {
+                    $scope.retSenStatus.ws_elevation = '---';
+                } else {
+                        $scope.retSenStatus.ws_elevation = $scope.retSenStatus.ws_elevation
+                    }
+                }
             if ($scope.retSenStatus === undefined) $scope.retSenStatus = $scope.aSensor.instrument_status.filter(function (ss) { return ss.status === "Lost"; })[0];
             if ($scope.retSenStatus !== undefined) {
                 $scope.retSenStatus.time_stamp = getDateTimeParts($scope.retSenStatus.time_stamp);//keeps it as utc for display
