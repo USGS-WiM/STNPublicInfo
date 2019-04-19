@@ -3,7 +3,7 @@
     "name": "STNPublicInfo",
     "organization": "U.S. Geological Survey",
     "description": "STN public information pages for hwms and sensors",
-    "version": "v0.0.0",
+    "version": "v1.0.1",
     "status": "Production",
 
     "permissions": {
