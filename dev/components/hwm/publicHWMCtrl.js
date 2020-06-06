@@ -46,7 +46,7 @@
             $scope.dataFiles = [];
             $scope.imageFiles = [];
             angular.forEach($scope.HWMFiles, function (hf) {
-                if (hf.filetype_id == 1) {
+                if ((hf.filetype_id == 1) || (hf.filetype_id == 13)) {
                     SOURCE.query({id: hf.source_id}).$promise.then(function (response){
                         hf.source = response;
                         hf.source.sourceAgency = agencyList.filter(function (a) { return a.agency_id == response.agency_id; })[0].agency_name;
